@@ -763,6 +763,24 @@
             border-color: var(--accent);
         }
 
+        .diff-pill.mcq.active {
+            background: var(--accent);
+            color: #0c0c0f;
+            border-color: var(--accent);
+        }
+
+        .diff-pill.short.active {
+            background: var(--accent3);
+            color: #0c0c0f;
+            border-color: var(--accent3);
+        }
+
+        .diff-pill.essay.active {
+            background: var(--accent2);
+            color: #0c0c0f;
+            border-color: var(--accent2);
+        }
+
         .diff-section-title {
             font-family: 'DM Mono', monospace;
             font-size: 11px;
@@ -781,40 +799,18 @@
             border-radius: 4px;
             text-transform: uppercase;
         }
+        .q-type-badge.mcq   { background: rgba(232,255,71,0.1);  color: var(--accent);  border: 1px solid rgba(232,255,71,0.25); }
+        .q-type-badge.short { background: rgba(71,200,255,0.1);  color: var(--accent3); border: 1px solid rgba(71,200,255,0.25); }
+        .q-type-badge.essay { background: rgba(255,107,71,0.1);  color: var(--accent2); border: 1px solid rgba(255,107,71,0.25); }
 
-        .q-type-badge.mcq {
-            background: rgba(232, 255, 71, 0.1);
-            color: var(--accent);
-            border: 1px solid rgba(232, 255, 71, 0.25);
-        }
-
-        .q-type-badge.short {
-            background: rgba(71, 200, 255, 0.1);
-            color: var(--accent3);
-            border: 1px solid rgba(71, 200, 255, 0.25);
-        }
-
-        .q-type-badge.essay {
-            background: rgba(255, 107, 71, 0.1);
-            color: var(--accent2);
-            border: 1px solid rgba(255, 107, 71, 0.25);
-        }
-
-        .text-answer-wrap {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
+        .text-answer-wrap { display: flex; flex-direction: column; gap: 12px; }
         .text-hint {
             font-family: 'DM Mono', monospace;
             font-size: 10px;
             letter-spacing: 1px;
             color: var(--accent3);
         }
-
-        .text-answer-input,
-        .text-answer-textarea {
+        .text-answer-input, .text-answer-textarea {
             width: 100%;
             background: var(--surface2);
             border: 1px solid var(--border);
@@ -826,120 +822,37 @@
             outline: none;
             transition: border-color 0.2s;
         }
-
         .text-answer-textarea {
             font-size: 14px;
             resize: vertical;
             min-height: 110px;
             line-height: 1.6;
         }
-
         .text-answer-input:focus,
-        .text-answer-textarea:focus {
-            border-color: var(--accent3);
-            box-shadow: 0 0 0 3px rgba(71, 200, 255, 0.08);
-        }
-
+        .text-answer-textarea:focus { border-color: var(--accent3); box-shadow: 0 0 0 3px rgba(71,200,255,0.08); }
         .text-answer-input:disabled,
-        .text-answer-textarea:disabled {
-            opacity: 0.55;
-            cursor: not-allowed;
-        }
-
+        .text-answer-textarea:disabled { opacity: 0.55; cursor: not-allowed; }
         .text-feedback {
             border-radius: 10px;
             padding: 14px 18px;
             border: 1px solid;
             animation: fadeUp 0.3s ease;
         }
-
-        .text-feedback.correct {
-            border-color: var(--easy);
-            background: rgba(71, 232, 122, 0.08);
-        }
-
-        .text-feedback.wrong {
-            border-color: var(--hard);
-            background: rgba(255, 71, 102, 0.08);
-        }
-
-        .feedback-score {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 8px;
-        }
-
-        .feedback-icon {
-            font-size: 16px;
-        }
-
-        .text-feedback.correct .feedback-icon {
-            color: var(--easy);
-        }
-
-        .text-feedback.wrong .feedback-icon {
-            color: var(--hard);
-        }
-
-        .feedback-pct {
-            font-family: 'DM Mono', monospace;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .text-feedback.correct .feedback-pct {
-            color: var(--easy);
-        }
-
-        .text-feedback.wrong .feedback-pct {
-            color: var(--hard);
-        }
-
-        .feedback-verdict {
-            font-family: 'DM Mono', monospace;
-            font-size: 10px;
-            letter-spacing: 2px;
-            color: var(--muted);
-        }
-
-        .feedback-answer {
-            font-size: 13px;
-            line-height: 1.55;
-        }
-
-        .feedback-ans-label {
-            font-family: 'DM Mono', monospace;
-            font-size: 10px;
-            color: var(--muted);
-            margin-right: 6px;
-        }
-
-        .feedback-ans-text {
-            color: var(--text);
-            font-style: italic;
-        }
-
-        @keyframes shake {
-
-            0%,
-            100% {
-                transform: translateX(0)
-            }
-
-            25% {
-                transform: translateX(-5px)
-            }
-
-            75% {
-                transform: translateX(5px)
-            }
-        }
-
-        .shake {
-            animation: shake 0.3s ease;
-            border-color: var(--hard) !important;
-        }
+        .text-feedback.correct { border-color: var(--easy); background: rgba(71,232,122,0.08); }
+        .text-feedback.wrong   { border-color: var(--hard); background: rgba(255,71,102,0.08); }
+        .feedback-score { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+        .feedback-icon { font-size: 16px; }
+        .text-feedback.correct .feedback-icon { color: var(--easy); }
+        .text-feedback.wrong   .feedback-icon { color: var(--hard); }
+        .feedback-pct { font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 600; }
+        .text-feedback.correct .feedback-pct { color: var(--easy); }
+        .text-feedback.wrong   .feedback-pct { color: var(--hard); }
+        .feedback-verdict { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--muted); }
+        .feedback-answer { font-size: 13px; line-height: 1.55; }
+        .feedback-ans-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-right: 6px; }
+        .feedback-ans-text { color: var(--text); font-style: italic; }
+        @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+        .shake { animation: shake 0.3s ease; border-color: var(--hard) !important; }
     </style>
 </head>
 
@@ -962,6 +875,14 @@
                 <button class="diff-pill easy" id="dpEasy" onclick="setDiff(1)">★ EASY</button>
                 <button class="diff-pill medium" id="dpMed" onclick="setDiff(2)">★★ MEDIUM</button>
                 <button class="diff-pill hard" id="dpHard" onclick="setDiff(3)">★★★ HARD</button>
+            </div>
+
+            <div class="diff-section-title">// Type Filter</div>
+            <div class="diff-pills">
+                <button class="diff-pill all active" id="tpAll" onclick="setType('all')">ALL</button>
+                <button class="diff-pill mcq" id="tpMCQ" onclick="setType('mcq')">객관식</button>
+                <button class="diff-pill short" id="tpShort" onclick="setType('short')">단답형</button>
+                <button class="diff-pill essay" id="tpEssay" onclick="setType('essay')">서술형</button>
             </div>
         </div>
 
@@ -1840,104 +1761,130 @@
                ════════════════════════════════════════ */
 
             // PART 1 - TURNER
-            { part: 1, diff: 2, type: 'short', q: "What artistic movement does J.M.W. Turner belong to?", ans: "Romanticism", keywords: ["romanticism", "romantic"], exp: "Turner belongs to Romanticism(낭만주의). His work later influenced Impressionism." },
-            { part: 1, diff: 1, type: 'short', q: "Name the two painting media Turner used throughout his career.", ans: "watercolors and oils", keywords: ["watercolor", "oil"], exp: "Turner used both watercolors(수채화) and oils(유화)." },
-            { part: 1, diff: 2, type: 'short', q: "What style characterized Turner's early work? (one word)", ans: "Realism", keywords: ["realism", "realistic"], exp: "Turner's early style is characterized by Realism(사실주의), focusing on detail and beauty of nature." },
-            { part: 1, diff: 3, type: 'short', q: "Which later art movement did Turner's work influence despite him being a Romanticist?", ans: "Impressionism", keywords: ["impressionism", "impressionist"], exp: "Turner was a Romanticist but his late style influenced future Impressionism(인상주의)." },
+            { part:1, diff:2, type:'short', q:"What artistic movement does J.M.W. Turner belong to?", ans:"Romanticism", keywords:["romanticism","romantic"], exp:"Turner belongs to Romanticism(낭만주의). His work later influenced Impressionism." },
+            { part:1, diff:1, type:'short', q:"Name the two painting media Turner used throughout his career.", ans:"watercolors and oils", keywords:["watercolor","oil"], exp:"Turner used both watercolors(수채화) and oils(유화)." },
+            { part:1, diff:2, type:'short', q:"What style characterized Turner's early work? (one word)", ans:"Realism", keywords:["realism","realistic"], exp:"Turner's early style is characterized by Realism(사실주의), focusing on detail and beauty of nature." },
+            { part:1, diff:3, type:'short', q:"Which later art movement did Turner's work influence despite him being a Romanticist?", ans:"Impressionism", keywords:["impressionism","impressionist"], exp:"Turner was a Romanticist but his late style influenced future Impressionism(인상주의)." },
 
             // PART 2 - CUBISM
-            { part: 2, diff: 1, type: 'short', q: "Who is the First Founder of Cubism?", ans: "Pablo Picasso", keywords: ["picasso", "pablo"], exp: "Pablo Picasso is the First Founder(첫 번째 창시자) of Cubism." },
-            { part: 2, diff: 2, type: 'short', q: "What technique, using layered real-life materials like newspapers, defines Synthetic Cubism?", ans: "Collage", keywords: ["collage"], exp: "Collage(콜라주) — layering newspapers, clippers, and real-life materials — is the defining technique of Synthetic Cubism." },
-            { part: 2, diff: 2, type: 'short', q: "What term describes the limited color palette (brown, black, grey) of Analytic Cubism?", ans: "Monochromatic", keywords: ["monochromatic", "monotone", "mono"], exp: "Analytic Cubism uses a monochromatic(단색조) palette of browns, blacks, blues, and greys." },
+            { part:2, diff:1, type:'short', q:"Who is the First Founder of Cubism?", ans:"Pablo Picasso", keywords:["picasso","pablo"], exp:"Pablo Picasso is the First Founder(첫 번째 창시자) of Cubism." },
+            { part:2, diff:2, type:'short', q:"What technique, using layered real-life materials like newspapers, defines Synthetic Cubism?", ans:"Collage", keywords:["collage"], exp:"Collage(콜라주) — layering newspapers, clippers, and real-life materials — is the defining technique of Synthetic Cubism." },
+            { part:2, diff:2, type:'short', q:"What term describes the limited color palette (brown, black, grey) of Analytic Cubism?", ans:"Monochromatic", keywords:["monochromatic","monotone","mono"], exp:"Analytic Cubism uses a monochromatic(단색조) palette of browns, blacks, blues, and greys." },
 
             // PART 3 - ROCKS
-            { part: 3, diff: 1, type: 'short', q: "What type of rock forms from cooled magma?", ans: "Igneous", keywords: ["igneous"], exp: "Igneous rock(화성암) forms from cooled magma(냉각된 마그마)." },
-            { part: 3, diff: 2, type: 'short', q: "What rock type forms when both sedimentary and igneous rocks are converted under high temperature and pressure?", ans: "Metamorphic", keywords: ["metamorphic"], exp: "Metamorphic rock(변성암) forms from both sedimentary and igneous rocks under high temperature & pressure." },
-            { part: 3, diff: 2, type: 'short', q: "Name the igneous rock formed by SLOW cooling of magma.", ans: "Granite", keywords: ["granite"], exp: "Granite(화강암) is formed when magma cools slowly underground." },
+            { part:3, diff:1, type:'short', q:"What type of rock forms from cooled magma?", ans:"Igneous", keywords:["igneous"], exp:"Igneous rock(화성암) forms from cooled magma(냉각된 마그마)." },
+            { part:3, diff:2, type:'short', q:"What rock type forms when both sedimentary and igneous rocks are converted under high temperature and pressure?", ans:"Metamorphic", keywords:["metamorphic"], exp:"Metamorphic rock(변성암) forms from both sedimentary and igneous rocks under high temperature & pressure." },
+            { part:3, diff:2, type:'short', q:"Name the igneous rock formed by SLOW cooling of magma.", ans:"Granite", keywords:["granite"], exp:"Granite(화강암) is formed when magma cools slowly underground." },
 
             // PART 4 - AQUIFERS
-            { part: 4, diff: 1, type: 'short', q: "What type of aquifer has NO LIMIT in size and is recharged mainly by rainwater?", ans: "Unconfined aquifer", keywords: ["unconfined"], exp: "The Unconfined Aquifer(비제한 대수층) has no size limit and is recharged by rainwater penetrating the soil." },
-            { part: 4, diff: 2, type: 'short', q: "What material forms the impermeable layer above a Confined Aquifer?", ans: "Stone and clay", keywords: ["stone", "clay"], exp: "The impermeable layer above a Confined Aquifer is formed by stone(석재) and clay(점토)." },
-            { part: 4, diff: 3, type: 'short', q: "Name the real-world aquifer example mentioned in the notes that is slowly drying out.", ans: "Texas Edward Aquifer", keywords: ["texas", "edward"], exp: "The Texas Edward Aquifer is slowly drying out due to heavy use for farming and domestic life." },
+            { part:4, diff:1, type:'short', q:"What type of aquifer has NO LIMIT in size and is recharged mainly by rainwater?", ans:"Unconfined aquifer", keywords:["unconfined"], exp:"The Unconfined Aquifer(비제한 대수층) has no size limit and is recharged by rainwater penetrating the soil." },
+            { part:4, diff:2, type:'short', q:"What material forms the impermeable layer above a Confined Aquifer?", ans:"Stone and clay", keywords:["stone","clay"], exp:"The impermeable layer above a Confined Aquifer is formed by stone(석재) and clay(점토)." },
+            { part:4, diff:3, type:'short', q:"Name the real-world aquifer example mentioned in the notes that is slowly drying out.", ans:"Texas Edward Aquifer", keywords:["texas","edward"], exp:"The Texas Edward Aquifer is slowly drying out due to heavy use for farming and domestic life." },
 
             // PART 5 - NEO vs ROM
-            { part: 5, diff: 1, type: 'short', q: "What value did Neoclassicism highly prize above all? (one word)", ans: "Order", keywords: ["order"], exp: "Neoclassicism highly valued ORDER(질서) and saw it as essential for a stable society." },
-            { part: 5, diff: 1, type: 'short', q: "What value did Romanticism highly prize? (one word)", ans: "Potential", keywords: ["potential"], exp: "Romanticism highly valued POTENTIAL(잠재력) — the potential of individuals and society to change." },
-            { part: 5, diff: 2, type: 'short', q: "Which Neoclassicist author used satire and wit to criticize British society?", ans: "Jonathan Swift", keywords: ["swift", "jonathan"], exp: "Jonathan Swift used satire(풍자) and wit(재치) to criticize the UK — a key example of Neoclassicism." },
+            { part:5, diff:1, type:'short', q:"What value did Neoclassicism highly prize above all? (one word)", ans:"Order", keywords:["order"], exp:"Neoclassicism highly valued ORDER(질서) and saw it as essential for a stable society." },
+            { part:5, diff:1, type:'short', q:"What value did Romanticism highly prize? (one word)", ans:"Potential", keywords:["potential"], exp:"Romanticism highly valued POTENTIAL(잠재력) — the potential of individuals and society to change." },
+            { part:5, diff:2, type:'short', q:"Which Neoclassicist author used satire and wit to criticize British society?", ans:"Jonathan Swift", keywords:["swift","jonathan"], exp:"Jonathan Swift used satire(풍자) and wit(재치) to criticize the UK — a key example of Neoclassicism." },
 
             // PART 6 - JACK LONDON
-            { part: 6, diff: 1, type: 'short', q: "What was the name of Jack London's yacht used for his 2-year Pacific voyage?", ans: "Snark", keywords: ["snark"], exp: "Jack London sailed the Pacific for 2 years on his yacht 'Snark' in his early 30s." },
-            { part: 6, diff: 2, type: 'short', q: "Name ONE of Jack London's major works written about Humanity vs Nature.", ans: "The Call of the Wild", keywords: ["wild", "fang", "call"], exp: "'The Call of the Wild' and 'White Fang' are Jack London's major works on Humanity vs Nature / Man vs Man." },
-            { part: 6, diff: 3, type: 'short', q: "What two themes does 'Martin Eden' (1909) explore?", ans: "Social class divisions and individualism", keywords: ["class", "individual", "social"], exp: "'Martin Eden' explores social class divisions(사회 계급 분열) and individualism(개인주의)." },
+            { part:6, diff:1, type:'short', q:"What was the name of Jack London's yacht used for his 2-year Pacific voyage?", ans:"Snark", keywords:["snark"], exp:"Jack London sailed the Pacific for 2 years on his yacht 'Snark' in his early 30s." },
+            { part:6, diff:2, type:'short', q:"Name ONE of Jack London's major works written about Humanity vs Nature.", ans:"The Call of the Wild", keywords:["wild","fang","call"], exp:"'The Call of the Wild' and 'White Fang' are Jack London's major works on Humanity vs Nature / Man vs Man." },
+            { part:6, diff:3, type:'short', q:"What two themes does 'Martin Eden' (1909) explore?", ans:"Social class divisions and individualism", keywords:["class","individual","social"], exp:"'Martin Eden' explores social class divisions(사회 계급 분열) and individualism(개인주의)." },
 
             // PART 7 - PLANETS
-            { part: 7, diff: 1, type: 'short', q: "List the four Terrestrial Planets.", ans: "Mercury Venus Earth Mars", keywords: ["mercury", "venus", "earth", "mars"], exp: "The Terrestrial Planets are Mercury(수성), Venus(금성), Earth(지구), Mars(화성)." },
-            { part: 7, diff: 2, type: 'short', q: "What makes Venus's rotation unique compared to other planets?", ans: "It rotates in the opposite direction", keywords: ["opposite", "direction", "reverse"], exp: "Venus rotates in the opposite direction(역방향) to most other planets, about once per month." },
-            { part: 7, diff: 2, type: 'short', q: "What distinguishes Earth from all other Terrestrial Planets?", ans: "Oxygen and water", keywords: ["oxygen", "water"], exp: "Earth uniquely possesses oxygen(산소) and water(물), distinguishing it from the other Terrestrial Planets." },
+            { part:7, diff:1, type:'short', q:"List the four Terrestrial Planets.", ans:"Mercury Venus Earth Mars", keywords:["mercury","venus","earth","mars"], exp:"The Terrestrial Planets are Mercury(수성), Venus(금성), Earth(지구), Mars(화성)." },
+            { part:7, diff:2, type:'short', q:"What makes Venus's rotation unique compared to other planets?", ans:"It rotates in the opposite direction", keywords:["opposite","direction","reverse"], exp:"Venus rotates in the opposite direction(역방향) to most other planets, about once per month." },
+            { part:7, diff:2, type:'short', q:"What distinguishes Earth from all other Terrestrial Planets?", ans:"Oxygen and water", keywords:["oxygen","water"], exp:"Earth uniquely possesses oxygen(산소) and water(물), distinguishing it from the other Terrestrial Planets." },
 
             // PART 8 - PLUTO
-            { part: 8, diff: 1, type: 'short', q: "Who discovered Pluto in 1930?", ans: "Tombough", keywords: ["tombough", "tombaugh"], exp: "Clyde Tombaugh discovered Pluto in 1930, though its size was not clearly identified at the time." },
-            { part: 8, diff: 2, type: 'short', q: "What discovery in 2005 triggered the reclassification of Pluto as a Dwarf Planet?", ans: "Eris", keywords: ["eris"], exp: "Mike Brown's discovery of Eris in 2005 — which is 25% more massive than Pluto — triggered the redefinition of 'planet'." },
-            { part: 8, diff: 2, type: 'short', q: "What is the name of Pluto's moon discovered in 1978?", ans: "Charon", keywords: ["charon"], exp: "Charon was discovered in 1978 and is Pluto's moon, which helped estimate Pluto's diameter as ~2,300 km." },
+            { part:8, diff:1, type:'short', q:"Who discovered Pluto in 1930?", ans:"Tombough", keywords:["tombough","tombaugh"], exp:"Clyde Tombaugh discovered Pluto in 1930, though its size was not clearly identified at the time." },
+            { part:8, diff:2, type:'short', q:"What discovery in 2005 triggered the reclassification of Pluto as a Dwarf Planet?", ans:"Eris", keywords:["eris"], exp:"Mike Brown's discovery of Eris in 2005 — which is 25% more massive than Pluto — triggered the redefinition of 'planet'." },
+            { part:8, diff:2, type:'short', q:"What is the name of Pluto's moon discovered in 1978?", ans:"Charon", keywords:["charon"], exp:"Charon was discovered in 1978 and is Pluto's moon, which helped estimate Pluto's diameter as ~2,300 km." },
 
             // PART 9 - JAZZ
-            { part: 9, diff: 1, type: 'short', q: "What city is considered the birthplace of Jazz / Dixieland Jazz?", ans: "New Orleans", keywords: ["orleans", "new orleans"], exp: "New Orleans (in the American South) is the birthplace of Dixieland Jazz." },
-            { part: 9, diff: 2, type: 'short', q: "Name the Jazz style of the 1940s-50s known for being abstract and allusive.", ans: "Bebop", keywords: ["bebop", "bop"], exp: "Bebop Jazz (1940s-50s) was less about dance and more sophisticated, abstract, and allusive — exemplified by Miles Davis." },
-            { part: 9, diff: 2, type: 'short', q: "What mass media technology in the 1920s helped spread Jazz nationwide?", ans: "Radio", keywords: ["radio"], exp: "The RADIO in the 1920s helped Jazz become widespread across America." },
+            { part:9, diff:1, type:'short', q:"What city is considered the birthplace of Jazz / Dixieland Jazz?", ans:"New Orleans", keywords:["orleans","new orleans"], exp:"New Orleans (in the American South) is the birthplace of Dixieland Jazz." },
+            { part:9, diff:2, type:'short', q:"Name the Jazz style of the 1940s-50s known for being abstract and allusive.", ans:"Bebop", keywords:["bebop","bop"], exp:"Bebop Jazz (1940s-50s) was less about dance and more sophisticated, abstract, and allusive — exemplified by Miles Davis." },
+            { part:9, diff:2, type:'short', q:"What mass media technology in the 1920s helped spread Jazz nationwide?", ans:"Radio", keywords:["radio"], exp:"The RADIO in the 1920s helped Jazz become widespread across America." },
 
             // PART 10 - BOB MARLEY
-            { part: 10, diff: 1, type: 'short', q: "What group did Bob Marley form at age 14?", ans: "The Wailers", keywords: ["wailers"], exp: "Bob Marley formed 'The Wailers' at age 14, launching his music career." },
-            { part: 10, diff: 2, type: 'short', q: "What religion/philosophy influenced Bob Marley's music and message?", ans: "Rastafarian", keywords: ["rastafarian", "rasta"], exp: "Rastafarian influences shaped both Bob Marley's music and his message of social justice." },
-            { part: 10, diff: 3, type: 'short', q: "Name Bob Marley's three albums in order: 1977, 1979, 1980.", ans: "Exodus Survival Uprising", keywords: ["exodus", "survival", "uprising"], exp: "Exodus(1977) → Survival(1979) → Uprising(1980). Legend was released posthumously in 1984." },
+            { part:10, diff:1, type:'short', q:"What group did Bob Marley form at age 14?", ans:"The Wailers", keywords:["wailers"], exp:"Bob Marley formed 'The Wailers' at age 14, launching his music career." },
+            { part:10, diff:2, type:'short', q:"What religion/philosophy influenced Bob Marley's music and message?", ans:"Rastafarian", keywords:["rastafarian","rasta"], exp:"Rastafarian influences shaped both Bob Marley's music and his message of social justice." },
+            { part:10, diff:3, type:'short', q:"Name Bob Marley's three albums in order: 1977, 1979, 1980.", ans:"Exodus Survival Uprising", keywords:["exodus","survival","uprising"], exp:"Exodus(1977) → Survival(1979) → Uprising(1980). Legend was released posthumously in 1984." },
 
             /* ════════════════════════════════════════
-               ESSAY QUESTIONS (type:'essay')
+               ESSAY & ADDITIONAL SHORT QUESTIONS
                ════════════════════════════════════════ */
 
             // PART 1 - TURNER
-            {
-                part: 1, diff: 3, type: 'essay',
-                q: "Describe the key differences between Turner's early and late artistic style. Include at least 3 specific characteristics for each period.",
-                ans: "Early: Realism, Detail, Beauty of Nature, Architecture. Late: Natural Disaster, Intensity, Freedom, Abstract, vivid colors, vulnerability of humanity.",
-                keywords: ["realism", "detail", "nature", "abstract", "vivid", "disaster", "freedom", "architecture", "vulnerability"],
-                exp: "Early Turner: Realism, Detail, Beauty of Nature, Architecture. Late Turner: Natural Disaster & Intensity, Freedom, Abstract(추상적), Imagination, Vivid Colors, Vulnerability of Humanity."
-            },
+            { part:1, diff:3, type:'essay',
+              q:"Describe the key differences between Turner's early and late artistic style. Include at least 3 specific characteristics for each period. \n(형식 - Early: ~, Late: ~)",
+              ans:"Early: Realism, Detail, Beauty of Nature, Architecture. Late: Natural Disaster, Intensity, Freedom, Abstract, vivid colors, vulnerability of humanity.",
+              keywords:["realism","detail","nature","abstract","vivid","disaster","freedom","architecture","vulnerability"],
+              exp:"Early Turner: Realism, Detail, Beauty of Nature, Architecture. Late Turner: Natural Disaster & Intensity, Freedom, Abstract(추상적), Imagination, Vivid Colors, Vulnerability of Humanity." },
+            { part:1, diff:2, type:'short', q:"What subject matters were prominent in Turner's LATE artistic style? Name at least two.", ans:"natural disaster and vulnerability of humanity", keywords:["disaster","vulnerability","humanity","intensity"], exp:"Late style focused on Natural Disaster & Intensity, and the vulnerability of humanity." },
 
             // PART 2 - CUBISM
-            {
-                part: 2, diff: 3, type: 'essay',
-                q: "Compare and contrast Analytic Cubism (Phase 1) and Synthetic Cubism (Phase 2). Cover time periods, color, and technique.",
-                ans: "Analytic Cubism 1907 1912 monochromatic brown black geometric shapes oil canvas. Synthetic Cubism 1912 1919 vivid colors collage layers real materials newspapers.",
-                keywords: ["analytic", "synthetic", "monochromatic", "vivid", "collage", "geometric", "layers", "1907", "1912", "1919"],
-                exp: "Phase 1 (Analytic, 1907-1912): monochromatic colors, reduced to geometric shapes, oil on canvas. Phase 2 (Synthetic, 1912-1919): vivid colors, collage technique, layers/combination, real-life materials (newspapers, clippers)."
-            },
+            { part:2, diff:3, type:'essay',
+              q:"Compare and contrast Analytic Cubism (Phase 1) and Synthetic Cubism (Phase 2). Cover time periods, color, and technique. \n(형식 - Phase 1: ~, Phase 2: ~)",
+              ans:"Phase 1: 1907-1912, monochromatic brown black, geometric shapes, oil on canvas. Phase 2: 1912-1919, vivid colors, collage technique layers real materials.",
+              keywords:["analytic","synthetic","monochromatic","vivid","collage","geometric","layers","1907","1912","1919"],
+              exp:"Phase 1 (Analytic, 1907-1912): monochromatic colors, reduced to geometric shapes, oil on canvas. Phase 2 (Synthetic, 1912-1919): vivid colors, collage technique, layers/combination, real-life materials (newspapers, clippers)." },
 
             // PART 3 - ROCKS
-            {
-                part: 3, diff: 3, type: 'essay',
-                q: "Explain the rock cycle. How do the three major rock types (Sedimentary, Igneous, Metamorphic) transform into each other?",
-                ans: "Sedimentary melts becomes igneous. Igneous high heat pressure becomes metamorphic. Metamorphic broken smaller pieces becomes sedimentary. Water carries chemicals for metamorphic.",
-                keywords: ["sedimentary", "igneous", "metamorphic", "melt", "pressure", "heat", "water", "broken"],
-                exp: "Sedimentary→Igneous (Melt). Igneous→Metamorphic (High Heat/Pressure). Metamorphic→Sedimentary (Smaller pieces broken). Water carries chemicals to enable metamorphic transformation."
-            },
+            { part:3, diff:3, type:'essay',
+              q:"Explain the rock cycle. How do the three major rock types (Sedimentary, Igneous, Metamorphic) transform into each other? \n(형식 - Sedimentary: ~, Igneous: ~, Metamorphic: ~)",
+              ans:"Sedimentary: melts becomes igneous. Igneous: high heat pressure becomes metamorphic. Metamorphic: broken smaller pieces becomes sedimentary. Water carries chemicals for metamorphic.",
+              keywords:["sedimentary","igneous","metamorphic","melt","pressure","heat","water","broken"],
+              exp:"Sedimentary→Igneous (Melt). Igneous→Metamorphic (High Heat/Pressure). Metamorphic→Sedimentary (Smaller pieces broken). Water carries chemicals to enable metamorphic transformation." },
+
+            // PART 4 - AQUIFERS
+            { part:4, diff:3, type:'essay',
+              q:"Describe the differences between an Unconfined Aquifer and a Confined Aquifer. \n(형식 - Unconfined: ~, Confined: ~)",
+              ans:"Unconfined: no limit in size, recharged by rainwater penetrating soil. Confined: under impermeable layer of stone clay, smaller area, holds less water.",
+              keywords:["unconfined","confined","rainwater","impermeable","stone","clay","limit"],
+              exp:"Unconfined: No limit in size, recharged by rainwater. Confined: Below impermeable layer (stone/clay), smaller area, holds less water." },
 
             // PART 5 - NEO vs ROM
-            {
-                part: 5, diff: 3, type: 'essay',
-                q: "Compare Neoclassicism and Romanticism. Discuss their values, view of society vs individual, and their relationship with the present/future.",
-                ans: "Neoclassicism society order present teach satire wit Jonathan Swift. Romanticism individual potential nature future risk challenge imagination revolution innovation.",
-                keywords: ["neoclassicism", "romanticism", "order", "potential", "society", "individual", "nature", "future", "present", "satire"],
-                exp: "Neoclassicism: Society>Individual, ORDER valued, Faithful to PRESENT, teaches via satire/wit (e.g. Swift). Romanticism: Individual>Society, POTENTIAL valued, interested in Nature & Future, embraces Risk, Challenge, Imagination, Revolution."
-            },
+            { part:5, diff:3, type:'essay',
+              q:"Compare Neoclassicism and Romanticism. Discuss their values, view of society vs individual, and their relationship with the present/future. \n(형식 - Neoclassicism: ~, Romanticism: ~)",
+              ans:"Neoclassicism: society over individual, order, present, teach satire wit. Romanticism: individual over society, potential, nature, future, risk challenge imagination.",
+              keywords:["neoclassicism","romanticism","order","potential","society","individual","nature","future","present","satire"],
+              exp:"Neoclassicism: Society>Individual, ORDER valued, Faithful to PRESENT, teaches via satire/wit (e.g. Swift). Romanticism: Individual>Society, POTENTIAL valued, interested in Nature & Future, embraces Risk, Challenge, Imagination, Revolution." },
+
+            // PART 6 - JACK LONDON
+            { part:6, diff:3, type:'essay',
+              q:"How did Jack London's early experiences shape his writing style, and what are the key themes found in his major works like 'The Call of the Wild'? \n(형식 - Early Experience: ~, Key Themes: ~)",
+              ans:"Early Experience: poverty, self educated, Klondike gold rush miner created harsh relentless atmosphere. Key Themes: humanity vs nature, man vs man, high power of will, individualism.",
+              keywords:["poverty","klondike","miner","harsh","nature","will","individualism","relentless"],
+              exp:"Early experiences (poverty, Klondike miner) gave a harsh, relentless tone. Key themes: Humanity vs Nature, Man vs Man, high power of will, individualism, social class divisions." },
+
+            // PART 7 - PLANETS
+            { part:7, diff:3, type:'essay',
+              q:"Contrast Terrestrial Planets with Jovian Planets based on their composition, formation, rotation, and moons. \n(형식 - Terrestrial: ~, Jovian: ~)",
+              ans:"Terrestrial: condensation of debris, solid core, slower rotation, max 3 moons. Jovian: gas planets distance from sun, more spins faster rotation, many moons, ring system.",
+              keywords:["condensation","solid","slower","gas","distance","faster","spins","ring"],
+              exp:"Terrestrial: Solid core from condensation, slower rotation, max 3 moons (Earth 1, Mars 2). Jovian: Gas planets, faster rotation (more spins), ring systems, many moons." },
+
+            // PART 8 - PLUTO
+            { part:8, diff:3, type:'essay',
+              q:"Summarize the history of Pluto from its discovery to the New Horizons mission, highlighting the events of 1930, 1978, 2005, and 2015. \n(형식 - 1930: ~, 1978: ~, 2005: ~, 2015: ~)",
+              ans:"1930: Tombough discovered Pluto. 1978: Charon discovered size estimated. 2005: Mike Brown discovered Eris reclassified as dwarf planet. 2015: New Horizons probe sent.",
+              keywords:["tombough","charon","size","eris","dwarf","horizons","1930","1978","2005","2015"],
+              exp:"1930: Discovered by Tombough. 1978: Charon discovered, size estimated. 2005: Eris discovered (25% larger), causing Pluto to become a Dwarf Planet. 2015: New Horizons sent." },
 
             // PART 9 - JAZZ
-            {
-                part: 9, diff: 3, type: 'essay',
-                q: "Trace the development of Jazz in America from its origins through the Bebop era. Mention at least 4 distinct stages and key characteristics of each.",
-                ans: "Dixieland New Orleans instant emotional impulsive small ensemble 1910s Chicago St Louis soloists 1920s radio Hot Jazz Louis Armstrong 1930s Swing large groups upbeat tempo dance 1940s Bebop sophisticated abstract allusive Miles Davis.",
-                keywords: ["dixieland", "orleans", "hot", "swing", "bebop", "radio", "armstrong", "davis", "ensemble", "dance", "abstract", "improvise"],
-                exp: "Dixieland(19c, New Orleans): instant/emotional/impulsive. 1910s: moved to Chicago/St.Louis, more soloists. 1920s: RADIO spread jazz, Hot Jazz(Louis Armstrong/Bix Beiderbecke). 1930s Swing: large groups, upbeat, dance. 1940-50s Bebop: less dance, sophisticated, abstract/allusive (Miles Davis)."
-            },
+            { part:9, diff:3, type:'essay',
+              q:"Trace the development of Jazz in America from its origins through the Bebop era. Mention at least 4 distinct stages and key characteristics of each. \n(형식 - Dixieland: ~, 1910s: ~, 1920s: ~, 1930s: ~, 1940s-50s: ~)",
+              ans:"Dixieland: instant emotional impulsive small ensemble. 1910s: Chicago St Louis soloists. 1920s: radio Hot Jazz Armstrong. 1930s: Swing large groups upbeat tempo dance. 1940s-50s: Bebop sophisticated abstract allusive Miles Davis.",
+              keywords:["dixieland","orleans","hot","swing","bebop","radio","armstrong","davis","ensemble","dance","abstract","improvise"],
+              exp:"Dixieland(19c, New Orleans): instant/emotional/impulsive. 1910s: moved to Chicago/St.Louis, more soloists. 1920s: RADIO spread jazz, Hot Jazz(Louis Armstrong/Bix Beiderbecke). 1930s Swing: large groups, upbeat, dance. 1940-50s Bebop: less dance, sophisticated, abstract/allusive (Miles Davis)." },
+
+            // PART 10 - BOB MARLEY
+            { part:10, diff:3, type:'essay',
+              q:"Discuss Bob Marley's role as a 'Prophet' during his World Tour and his Political activism. What messages did he try to deliver? \n(형식 - Role as Prophet: ~, Political Activism: ~)",
+              ans:"Role as Prophet: deliver social message beyond entertainment. Political Activism: rights of poor people, criticized corrupt society, influenced by Rastafarian beliefs.",
+              keywords:["prophet","social","rights","poor","corrupt","rastafarian","activism"],
+              exp:"Role: He acted as a Prophet, delivering messages beyond entertainment. Activism: Fought for the rights of poor people and criticized corrupt society, heavily influenced by Rastafarianism." },
         ];
 
         // ═══════════════════════════════════════════════════════
@@ -1950,8 +1897,10 @@
             results: [],
             selectedParts: PARTS.map(p => p.id),
             selectedDiffs: [1, 2, 3],
+            selectedTypes: ['mcq', 'short', 'essay'],
             lastPartIds: PARTS.map(p => p.id),
             lastDiffs: [1, 2, 3],
+            lastTypes: ['mcq', 'short', 'essay'],
         };
 
         // ═══════════════════════════════════════════════════════
@@ -1972,14 +1921,19 @@
             return { label: 'HARD', stars: '★★★', cls: 'hard' };
         }
 
-        function buildQuiz(partIds, diffs) {
+        function buildQuiz(partIds, diffs, types) {
             const TOTAL = 30;
             const MIN_PER_PART = 2;
             const activeDiffs = (diffs && diffs.length > 0) ? diffs : [1, 2, 3];
+            const activeTypes = (types && types.length > 0) ? types : ['mcq', 'short', 'essay'];
 
             const pools = {};
             partIds.forEach(pid => {
-                pools[pid] = shuffle(QUESTIONS.filter(q => q.part === pid && activeDiffs.includes(q.diff)));
+                pools[pid] = shuffle(QUESTIONS.filter(q => 
+                    q.part === pid && 
+                    activeDiffs.includes(q.diff) &&
+                    activeTypes.includes(q.type || 'mcq')
+                ));
             });
 
             const selected = [];
@@ -2027,6 +1981,7 @@
     </div>`;
             }).join('');
             updateDiffPills();
+            updateTypePills();
         }
 
         function setDiff(d) {
@@ -2052,6 +2007,29 @@
             if (g('dpHard')) g('dpHard').classList.toggle('active', !isAll && state.selectedDiffs.includes(3));
         }
 
+        function setType(t) {
+            if (t === 'all') {
+                state.selectedTypes = ['mcq', 'short', 'essay'];
+            } else {
+                const idx = state.selectedTypes.indexOf(t);
+                if (idx === -1) {
+                    state.selectedTypes.push(t);
+                } else if (state.selectedTypes.length > 1) {
+                    state.selectedTypes.splice(idx, 1);
+                }
+            }
+            updateTypePills();
+        }
+
+        function updateTypePills() {
+            const isAll = ['mcq', 'short', 'essay'].every(t => state.selectedTypes.includes(t));
+            const g = id => document.getElementById(id);
+            if (g('tpAll')) g('tpAll').classList.toggle('active', isAll);
+            if (g('tpMCQ')) g('tpMCQ').classList.toggle('active', !isAll && state.selectedTypes.includes('mcq'));
+            if (g('tpShort')) g('tpShort').classList.toggle('active', !isAll && state.selectedTypes.includes('short'));
+            if (g('tpEssay')) g('tpEssay').classList.toggle('active', !isAll && state.selectedTypes.includes('essay'));
+        }
+
         // ═══════════════════════════════════════════════════════
         // START FUNCTIONS
         // ═══════════════════════════════════════════════════════
@@ -2064,11 +2042,13 @@
             startQuiz([partId]);
         }
 
-        function startQuiz(partIds, diffs) {
+        function startQuiz(partIds, diffs, types) {
             const useDiffs = diffs || state.selectedDiffs;
+            const useTypes = types || state.selectedTypes;
             state.lastPartIds = [...partIds];
             state.lastDiffs = [...useDiffs];
-            state.quizQuestions = buildQuiz(partIds, useDiffs);
+            state.lastTypes = [...useTypes];
+            state.quizQuestions = buildQuiz(partIds, useDiffs, useTypes);
             state.currentIdx = 0;
             state.results = [];
             showScreen('quiz');
@@ -2076,7 +2056,7 @@
         }
 
         function replayQuiz() {
-            startQuiz(state.lastPartIds, state.lastDiffs);
+            startQuiz(state.lastPartIds, state.lastDiffs, state.lastTypes);
         }
 
         function openPartModal() {
@@ -2128,7 +2108,7 @@
             diffEl.innerHTML = `${diff.stars}<span class="q-diff-label">${diff.label}</span>`;
             const badge = document.getElementById('qTypeBadge');
             if (badge) {
-                const labels = { mcq: 'MCQ', short: 'SHORT ANSWER', essay: 'ESSAY' };
+                const labels = { mcq:'MCQ', short:'SHORT ANSWER', essay:'ESSAY' };
                 badge.textContent = labels[qtype] || 'MCQ';
                 badge.className = `q-type-badge ${qtype}`;
             }
@@ -2152,9 +2132,9 @@
                     <div class="text-answer-wrap">
                         <div class="text-hint">// Answer in English${isEssay ? ' &nbsp;·&nbsp; Include key concepts' : ''}</div>
                         ${isEssay
-                        ? `<textarea id="textAnswerInput" class="text-answer-textarea" placeholder="Write your answer here..."></textarea>`
-                        : `<input type="text" id="textAnswerInput" class="text-answer-input" placeholder="Type your answer...">`
-                    }
+                            ? `<textarea id="textAnswerInput" class="text-answer-textarea" placeholder="Write your answer here..."></textarea>`
+                            : `<input type="text" id="textAnswerInput" class="text-answer-input" placeholder="Type your answer...">`
+                        }
                         <button class="btn btn-primary" onclick="submitTextAnswer()" id="submitTextBtn" style="align-self:flex-start">Submit →</button>
                     </div>`;
                 setTimeout(() => {
@@ -2180,13 +2160,13 @@
         }
         function levenshtein(a, b) {
             const m = a.length, n = b.length;
-            const dp = Array.from({ length: m + 1 }, (_, i) =>
-                Array.from({ length: n + 1 }, (_, j) => i === 0 ? j : j === 0 ? i : 0)
+            const dp = Array.from({length: m+1}, (_, i) =>
+                Array.from({length: n+1}, (_, j) => i === 0 ? j : j === 0 ? i : 0)
             );
             for (let i = 1; i <= m; i++)
                 for (let j = 1; j <= n; j++)
-                    dp[i][j] = a[i - 1] === b[j - 1] ? dp[i - 1][j - 1]
-                        : 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
+                    dp[i][j] = a[i-1]===b[j-1] ? dp[i-1][j-1]
+                        : 1 + Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]);
             return dp[m][n];
         }
         function similarityScore(input, correct) {
@@ -2334,7 +2314,7 @@
       <div class="bd-q">
         <div style="font-size:11px;color:var(--muted);margin-bottom:3px">Part ${q.part} · ${part.short}</div>
         ${q.q}
-        ${!r ? `<div class="bd-ans">정답: <span>${(q.type === 'short' || q.type === 'essay') ? q.ans : q.opts[q.ans]}</span></div>` : ''}
+        ${!r ? `<div class="bd-ans">정답: <span>${(q.type==='short'||q.type==='essay') ? q.ans : q.opts[q.ans]}</span></div>` : ''}
       </div>
       <span class="${r ? 'bd-correct' : 'bd-wrong'}">${r ? '맞음' : '틀림'}</span>
     </div>`;
