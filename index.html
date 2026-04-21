@@ -510,6 +510,43 @@
     line-height: 1.6;
   }
   .score-message strong { color: var(--text); }
+
+  /* ── DIFF FILTER ── */
+  .diff-filter { margin-bottom: 24px; }
+  .diff-filter-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .diff-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+  .diff-pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    padding: 7px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .diff-pill:hover { border-color: var(--accent); color: var(--accent); }
+  .diff-pill.easy.active  { background: var(--easy);   color: #0c0c0f; border-color: var(--easy); }
+  .diff-pill.medium.active{ background: var(--medium); color: #0c0c0f; border-color: var(--medium); }
+  .diff-pill.hard.active  { background: var(--hard);   color: #fff;    border-color: var(--hard); }
+  .diff-pill.all.active   { background: var(--accent); color: #0c0c0f; border-color: var(--accent); }
+  .diff-section-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    margin: 28px 0 10px;
+    text-transform: uppercase;
+  }
 </style>
 </head>
 <body>
@@ -523,6 +560,16 @@
   </div>
 
   <div class="parts-grid" id="partsGrid"></div>
+
+  <div class="diff-section-title">// Difficulty Filter</div>
+  <div class="diff-filter">
+    <div class="diff-pills">
+      <button class="diff-pill all active" id="dpAll" onclick="setDiff('all')">ALL</button>
+      <button class="diff-pill easy"         id="dpEasy" onclick="setDiff(1)">★ EASY</button>
+      <button class="diff-pill medium"       id="dpMed"  onclick="setDiff(2)">★★ MEDIUM</button>
+      <button class="diff-pill hard"         id="dpHard" onclick="setDiff(3)">★★★ HARD</button>
+    </div>
+  </div>
 
   <div class="start-btns">
     <button class="btn btn-primary" onclick="startFullQuiz()">🎯 전체 퀴즈 시작 (30문제)</button>
@@ -586,7 +633,7 @@
     <div id="breakdownList"></div>
   </div>
   <div class="result-btns">
-    <button class="btn btn-primary" onclick="startFullQuiz()">🔄 다시 풀기</button>
+    <button class="btn btn-primary" onclick="replayQuiz()">🔄 다시 풀기</button>
     <button class="btn btn-secondary" onclick="goHome()">🏠 홈으로</button>
   </div>
 </div>
@@ -649,7 +696,7 @@ const QUESTIONS = [
 
 { part:1, diff:3, q:"'The Slave Ship'은 Turner의 어떤 시기 작품의 특징을 잘 보여주는 예시인가요?",
   opts:["초기 사실주의 시기","중기 건축 묘사 시기","후기 강렬하고 추상적인 시기","인상주의 직접 참여 시기"],
-  ans:2, exp:"'The Slave Sheep(The Slave Ship)'은 Turner 후기 작품의 예시로, 자연재해의 강렬함, 자유로운 표현, 추상적 요소, 인류의 취약성 등의 특징을 보여줍니다." },
+  ans:2, exp:"'The Slave Ship'은 Turner 후기 작품의 예시로, 자연재해의 강렬함, 자유로운 표현, 추상적 요소, 인류의 취약성 등의 특징을 보여줍니다." },
 
 { part:1, diff:3, q:"Turner의 작품 매체로 올바른 것을 모두 고르면?",
   opts:["수채화만 사용","유화만 사용","수채화와 유화 모두 사용","프레스코와 조각"],
@@ -1060,6 +1107,126 @@ const QUESTIONS = [
 { part:10, diff:2, q:"Bob Marley가 Rock & Roll Hall of Fame에 등재된 것은 무엇을 의미하나요?",
   opts:["록 음악가로 전향","레게가 세계적 영향력을 가진 음악임을 인정","자메이카 정부 표창","Island Records 특별 수상"],
   ans:1, exp:"Bob Marley의 Rock & Roll Hall of Fame 등재는 레게 음악이 세계적인 영향력(Worldwide influence)을 가진 음악임을 인정받은 것입니다." },
+
+/* ── PART 1 추가 문제 ── */
+{ part:1, diff:1, q:"Turner가 속한 예술 사조는?", opts:["인상주의","낭만주의","입체주의","사실주의"], ans:1, exp:"Turner는 Romanticism(낭만주의) 화가입니다." },
+{ part:1, diff:1, q:"'seascape'가 의미하는 것은?", opts:["풍경화","해경화(바다 풍경화)","초상화","정물화"], ans:1, exp:"Seascape는 바다 풍경화입니다. Turner는 landscape와 seascape 모두 그렸습니다." },
+{ part:1, diff:1, q:"Turner 초기 작품의 특징이 아닌 것은?", opts:["Realism(사실주의)","Detail(세밀함)","자연의 아름다움","추상적 자유 표현"], ans:3, exp:"추상적 자유 표현은 후기 특징입니다. 초기는 Realism, 세밀함, 자연 아름다움, 건축이 특징입니다." },
+{ part:1, diff:2, q:"'vulnerability of humanity'는 어느 시기 특징인가?", opts:["초기(Early)","후기(Late)","전 시기","중기"], ans:1, exp:"vulnerability of humanity(인류의 취약성)는 Turner의 후기(Late) 특징입니다." },
+{ part:1, diff:2, q:"Turner의 후기 작품에서 'vivid colors'가 의미하는 것은?", opts:["단조로운 단색조","선명하고 강렬한 색채","무채색 표현","검정과 흰색만"], ans:1, exp:"Turner 후기의 vivid colors는 감정을 강조하는 선명하고 강렬한 색채 표현입니다." },
+{ part:1, diff:2, q:"Turner와 관련 없는 기법은?", opts:["수채화","유화","콜라주","landscape 묘사"], ans:2, exp:"콜라주(Collage)는 Synthetic Cubism의 기법입니다. Turner는 수채화와 유화를 사용했습니다." },
+{ part:1, diff:2, q:"Turner 후기에서 'Freedom(자유)'이 의미하는 것은?", opts:["정치적 자유","전통 사실주의 화법에서 벗어난 자유로운 표현","사회 규범 해방","색채 제한 해제"], ans:1, exp:"Turner 후기의 Freedom은 전통 사실주의 화법에서 벗어난 자유로운 붓터치와 표현 방식을 의미합니다." },
+{ part:1, diff:3, q:"Turner가 낭만주의이면서 인상주의에 영향을 미친 이유는?", opts:["인상주의 화가들과 직접 교류","후기 빛·색채의 자유로운 표현이 인상주의 특징과 유사","수채화를 사용했기 때문","영국에서 활동해서"], ans:1, exp:"Turner 후기 작품의 빛과 색채의 자유로운 표현이 인상주의의 선구적 특징을 보여줬습니다." },
+{ part:1, diff:3, q:"Turner 예술의 역사적 의의를 가장 잘 설명한 것은?", opts:["입체주의 창시","낭만주의와 인상주의를 잇는 다리 역할","신고전주의 부활","사진 예술 선구"], ans:1, exp:"Turner는 Romanticism 소속이면서 Impressionism에 영향을 주어 두 사조를 잇는 다리 역할을 했습니다." },
+{ part:1, diff:3, q:"Turner의 초기→후기 변화를 가장 잘 설명한 것은?", opts:["매체가 수채화→유화로","사실적 묘사에서 추상·자유·강렬한 표현으로","인물화에서 풍경화로","영국에서 프랑스로 이동"], ans:1, exp:"Turner의 핵심 변화는 초기 Realism·Detail에서 후기 추상, 자유, 강렬함, vivid colors로의 전환입니다." },
+
+/* ── PART 2 추가 문제 ── */
+{ part:2, diff:1, q:"Analytic Cubism의 색상 특징은?", opts:["화려한 원색","모노크로마틱(단색조)","흰색과 검정만","무지개 색"], ans:1, exp:"Analytic Cubism은 monochromatic(단색조) 색상(갈색, 검정, 파랑, 회색)을 사용합니다." },
+{ part:2, diff:1, q:"COLLAGE(콜라주)란?", opts:["유화 기법","다양한 재료를 붙여 만드는 기법","수채화 기법","조각 기법"], ans:1, exp:"COLLAGE는 신문, 사진 등 다양한 재료를 붙여 만드는 기법으로 Synthetic Cubism의 특징입니다." },
+{ part:2, diff:1, q:"Cubism 1기와 2기의 공통 매체는?", opts:["수채화","Oil on canvas","프레스코","디지털"], ans:1, exp:"Cubism 1기(Analytic)와 2기(Synthetic) 모두 Oil on canvas(캔버스 유화)를 사용했습니다." },
+{ part:2, diff:2, q:"Synthetic Cubism이 1기와 다른 색채 특징은?", opts:["더 단조로운 색","선명하고 화려한 vivid colors","흑백만","색상 없음"], ans:1, exp:"Synthetic Cubism은 1기의 단색조와 달리 vivid colors(선명한 색상)를 사용합니다." },
+{ part:2, diff:2, q:"Analytic Cubism이 대상을 기하학적으로 단순화하는 목적은?", opts:["빠른 작업","여러 각도를 동시에 분석·표현","물감 절약","실물과 유사하게"], ans:1, exp:"Analytic Cubism은 대상을 기하학적으로 분해하여 여러 각도를 동시에 보여주는 분석적 표현을 추구합니다." },
+{ part:2, diff:2, q:"Synthetic Cubism에서 신문(newspaper)을 사용한 이유는?", opts:["비용 절감","실제 생활 재료로 예술과 현실 연결","텍스트 강조","종이 질감 추가"], ans:1, exp:"Synthetic Cubism에서 신문 등 실제 재료는 예술과 일상 현실을 연결하는 수단으로 사용되었습니다." },
+{ part:2, diff:3, q:"Cubism이 현대 미술에 '막대한 충격'을 준 핵심 이유는?", opts:["더 사실적인 그림","자연 모방 전통을 깨고 추상적 표현으로 전환","더 큰 캔버스","더 많은 색 사용"], ans:1, exp:"Cubism은 수백 년 자연 모방 전통을 깨고 추상적 표현으로 전환하여 현대 미술의 방향을 바꿨습니다." },
+{ part:2, diff:3, q:"Picasso가 '자연을 모방하지 않은' 것의 의의는?", opts:["기술 부족","의도적으로 새로운 추상적 표현 언어 탐구","자연이 아름답지 않아서","빠른 작업 위해"], ans:1, exp:"Picasso는 의도적으로 전통을 깨고 추상적 표현이라는 새로운 예술 언어를 탐구했습니다." },
+{ part:2, diff:3, q:"Analytic→Synthetic Cubism의 색채 변화는?", opts:["단색조→vivid colors","vivid colors→단색조","흑백→컬러","컬러→흑백"], ans:0, exp:"1기 단색조(monochromatic)에서 2기 vivid colors(선명한 색상)로 변화했습니다." },
+{ part:2, diff:2, q:"Synthetic Cubism에서 'Layers, Combination'을 강조하는 이유는?", opts:["더 빠른 작업을 위해","다양한 재료와 층으로 복합적 표현","비용 절감","더 어두운 표현 위해"], ans:1, exp:"Synthetic Cubism은 여러 층(Layers)과 재료의 조합(Combination)으로 복합적이고 풍부한 표현을 추구합니다." },
+
+/* ── PART 3 추가 문제 ── */
+{ part:3, diff:1, q:"퇴적암(Sedimentary)의 영어 이름은?", opts:["Igneous","Metamorphic","Sedimentary","Vitreous"], ans:2, exp:"퇴적암은 Sedimentary rock입니다. Accumulated Sediment(쌓인 퇴적물)로 형성됩니다." },
+{ part:3, diff:1, q:"마그마가 빠르게 냉각될 때 생기는 암석이 아닌 것은?", opts:["흑요석(Obsidian)","안산암(Andesite)","화강암(Granite)","현무암(Basalt)"], ans:2, exp:"화강암(Granite)은 마그마가 천천히(Slow) 냉각될 때 생깁니다. 빠른 냉각에는 흑요석, 안산암, 현무암 등이 있습니다." },
+{ part:3, diff:1, q:"변성암의 예시가 아닌 것은?", opts:["대리석(Marble)","사암(Sandstone)","Slime Rock","Siliceous rock"], ans:1, exp:"사암(Sandstone)은 퇴적암의 예시입니다. 대리석, Slime Rock, Siliceous rock은 변성암입니다." },
+{ part:3, diff:2, q:"퇴적암의 '전기력(Electrical Attraction)'은 무슨 역할을 하나?", opts:["번개로 암석 형성","퇴적 입자들이 서로 달라붙어 굳게 함","지구 자기장 형성","물 순환 돕기"], ans:1, exp:"퇴적암 형성 시 Electrical Attraction(전기력)이 퇴적 입자들을 서로 달라붙게 하여 암석을 굳힙니다." },
+{ part:3, diff:2, q:"화성암의 종류가 냉각 속도에 따라 달라지는 이유는?", opts:["온도가 높을수록 단단해서","냉각 속도와 화학 조성에 따라 결정 구조가 달라지기 때문","마그마 양이 다르기 때문","분출 위치가 달라서"], ans:1, exp:"화성암은 냉각 속도(cooling speed)와 화학 조성(chemical composition)에 따라 결정 크기와 구조가 달라집니다." },
+{ part:3, diff:2, q:"변성암 형성에서 물(WATER)의 역할은?", opts:["직접 암석을 녹임","화학물질을 운반하여 변성 촉진","표면을 침식","냉각 촉진"], ans:1, exp:"물(WATER)은 화학물질을 운반(carries chemicals)하여 퇴적암·화성암의 변성암 전환을 돕습니다." },
+{ part:3, diff:3, q:"암석 순환 과정 중 '화성암→변성암'의 조건은?", opts:["물에 의한 침전","높은 열과 압력(High Heat/Pressure)","빠른 냉각","공기와의 접촉"], ans:1, exp:"화성암은 높은 열과 압력(High Heat/Pressure)에 의해 변성암이 됩니다." },
+{ part:3, diff:3, q:"퇴적암이 '취약(Fragile)'한 이유는?", opts:["구성 광물이 약해서","물리적 압축과 전기력으로 결합되어 접착력이 약함","화학 성분이 없어서","층이 얇아서"], ans:1, exp:"퇴적암은 퇴적물이 물리적으로 쌓이고 전기력으로 결합된 것으로, 화성암·변성암에 비해 Fragile(취약)합니다." },
+{ part:3, diff:2, q:"'암맥(dark veins)'이 퇴적암에 생기는 과정은?", opts:["마그마 직접 침투","지표면 운동으로 공기와 접촉하며 형성","해수 침투","산화 반응"], ans:1, exp:"퇴적암의 dark veins는 지표면 운동으로 암석이 표면으로 올라와 공기와 접촉하면서 형성됩니다." },
+{ part:3, diff:1, q:"암석 순환에서 '변성암→퇴적암'이 되는 과정은?", opts:["용융(Melt)","높은 압력","더 작은 조각으로 파쇄(Smaller pieces broken)","냉각"], ans:2, exp:"변성암은 더 작은 조각으로 파쇄(Smaller pieces broken)되어 퇴적물이 되고 결국 퇴적암이 됩니다." },
+
+/* ── PART 4 추가 문제 ── */
+{ part:4, diff:1, q:"피압 대수층(Confined Aquifer)의 위치는?", opts:["비제한 대수층 위","비제한 대수층 아래","지표면 바로 아래","해저"], ans:1, exp:"Confined Aquifer(피압 대수층)는 Unconfined Aquifer(비제한 대수층) 아래에 위치합니다." },
+{ part:4, diff:1, q:"비제한 대수층(Unconfined Aquifer)을 덮는 층의 특성은?", opts:["불투수성(impermeable)","투수성(permeable)","암반","점토"], ans:1, exp:"Unconfined Aquifer는 permeable(투수성) 지층 아래에 있어 빗물이 침투하여 보충됩니다." },
+{ part:4, diff:2, q:"피압 대수층(Confined Aquifer)의 재충전 특성은?", opts:["빠르게 재충전","비제한보다 느리게 재충전","재충전 불가","계절적으로 재충전"], ans:1, exp:"Confined Aquifer는 불투수성 층에 막혀 있어 Unconfined보다 recharges slowly(느리게 재충전)됩니다." },
+{ part:4, diff:2, q:"피압 대수층이 높은 압력을 가지는 이유는?", opts:["지하 마그마와 가까워서","위에 impermeable layer(불투수성 층)에 막혀 있기 때문","수량이 많아서","해수와 접촉해서"], ans:1, exp:"Confined Aquifer는 위에 석재와 점토로 형성된 impermeable layer(불투수성 층)에 의해 막혀 HIGH PRESSURE를 가집니다." },
+{ part:4, diff:2, q:"Texas Edward Aquifer가 서서히 고갈되는 이유는?", opts:["자연 증발 때문에","농업과 생활용수로 과도하게 사용되기 때문","지구 온난화","지진 때문에"], ans:1, exp:"Texas Edward Aquifer는 Farming(농업)과 Domestic Life(생활용수)로 활발히 사용되어 slowly drying out(서서히 고갈)됩니다." },
+{ part:4, diff:3, q:"비제한 대수층(Unconfined)의 가장 큰 특징은?", opts:["높은 압력 보유","크기 제한 없고 빗물로 주로 보충","불투수성 층에 덮임","재충전이 느림"], ans:1, exp:"Unconfined Aquifer는 NO LIMIT of size(크기 제한 없음)이며, 대부분 rain(빗물)이 토양을 침투한 지하수가 수원입니다." },
+{ part:4, diff:3, q:"두 대수층 유형을 올바르게 비교한 것은?", opts:["Unconfined: 높은 압력 / Confined: 낮은 압력","Unconfined: 투수층 아래 / Confined: 불투수층 아래","둘 다 빗물로만 보충","둘 다 크기 제한 있음"], ans:1, exp:"Unconfined는 permeable(투수성) 층 아래, Confined는 impermeable(불투수성) 층 아래에 위치합니다." },
+{ part:4, diff:1, q:"대수층(Aquifer)이란?", opts:["지하 마그마층","지하에 물이 저장된 층(지하수층)","해수면 아래 암석층","빙하층"], ans:1, exp:"대수층(Aquifer)은 지하에 물이 저장된 층입니다. Farming과 Domestic Life에 활용됩니다." },
+{ part:4, diff:2, q:"비제한 대수층에서 지하수가 보충되는 주요 경로는?", opts:["강물이 역류","빗물(rain)이 토양을 침투","지하 마그마가 물로 변환","해수가 유입"], ans:1, exp:"Unconfined Aquifer의 지하수는 대부분 rain(빗물)이 토양을 침투(penetrating the soil)한 결과입니다." },
+{ part:4, diff:3, q:"피압 대수층의 '불투수성 층(impermeable layer)'은 무엇으로 이루어져 있나?", opts:["모래와 자갈","석재(stone)와 점토(clay)","유기물과 부식토","금속 광물"], ans:1, exp:"Confined Aquifer 위의 impermeable layer(불투수성 층)은 stone(석재)과 clay(점토)로 형성됩니다." },
+
+/* ── PART 5 추가 문제 ── */
+{ part:5, diff:1, q:"신고전주의(Neoclassicism)에서 개인보다 중요시한 것은?", opts:["자연","사회(Society)","미래","상상력"], ans:1, exp:"Neoclassicism은 Society > Individual(사회 > 개인)을 기본 가치로 합니다." },
+{ part:5, diff:1, q:"낭만주의(Romanticism)에서 가장 관심을 가진 것은?", opts:["과거와 전통","현재의 규범","자연과 미래","사회 질서"], ans:2, exp:"Romanticism은 자연(nature)과 미래(future)에 관심을 가졌습니다." },
+{ part:5, diff:1, q:"신고전주의(Neoclassicism)의 시간 지향성은?", opts:["자연과 미래","과거의 영광","현재에 충실(Faithful to PRESENT)","미래 혁명"], ans:2, exp:"Neoclassicism은 Faithful to PRESENT(현재에 충실)한 특징을 가집니다." },
+{ part:5, diff:2, q:"Jonathan Swift의 글쓰기 방식과 일치하는 사조는?", opts:["낭만주의","인상주의","신고전주의","사실주의"], ans:2, exp:"Jonathan Swift는 Neoclassicism의 예시로, satire(풍자)와 wit(재치)를 통해 영국 사회를 비판했습니다." },
+{ part:5, diff:2, q:"낭만주의에서 '잠재력(POTENTIAL)'을 중시하는 이유는?", opts:["사회 안정을 위해","개인과 사회의 변화 가능성을 중요시하기 때문","전통을 지키기 위해","이성의 힘을 믿어서"], ans:1, exp:"Romanticism은 Individual > Society로 개인의 POTENTIAL(잠재력)과 변화 가능성을 높이 평가합니다." },
+{ part:5, diff:2, q:"신고전주의가 '질서(ORDER)'를 강조하는 이유는?", opts:["개인의 자유를 제한하기 위해","사회의 안정과 올바른 방향 제시를 위해","혁명을 막기 위해","전통을 보존하기 위해"], ans:1, exp:"Neoclassicism은 ORDER(질서)를 통해 사회의 안정과 올바른 방향을 제시하는 것을 목표로 합니다." },
+{ part:5, diff:3, q:"신고전주의 작품이 '현재(PRESENT)'에 집중하는 것의 의미는?", opts:["과거를 무시","당시 사회의 현실과 문제를 직시하고 비판","미래 예언","종교적 현재"], ans:1, exp:"Neoclassicism의 Faithful to PRESENT는 당시 사회의 현실과 문제를 직시하여 풍자·비판하는 것을 의미합니다." },
+{ part:5, diff:3, q:"낭만주의가 '혁명과 혁신'을 선호하는 근본 이유는?", opts:["기존 사회 파괴를 원해서","개인의 잠재력과 변화 가능성을 믿기 때문","물질적 이익을 위해","전통 예술 복원을 위해"], ans:1, exp:"Romanticism은 Individual의 POTENTIAL(잠재력)과 사회 변화 가능성을 믿기 때문에 혁명과 혁신을 좋아합니다." },
+{ part:5, diff:3, q:"두 사조에서 '자연(Nature)'에 대한 태도 차이는?", opts:["신고전주의:자연 중시 / 낭만주의:자연 무시","신고전주의:현재 사회 중시 / 낭만주의:자연과 미래에 관심","둘 다 자연 무시","둘 다 자연 중시"], ans:1, exp:"Neoclassicism은 현재 사회에 집중하고, Romanticism은 자연(nature)과 미래(future)에 관심을 가집니다." },
+{ part:5, diff:1, q:"다음 중 낭만주의(Romanticism)의 특징은?", opts:["ORDER(질서) 중시","풍자·재치로 독자 교육","위험과 도전, 상상력 중시","현재에 충실"], ans:2, exp:"Romanticism은 Risk(위험), Challenge(도전), 상상력, 자연, 미래, 혁신을 특징으로 합니다." },
+
+/* ── PART 6 추가 문제 ── */
+{ part:6, diff:1, q:"Jack London이 독학(self-educated)을 한 이유는?", opts:["부모가 공부를 금지해서","가난한 환경에도 불구하고 스스로 공부","학교가 없어서","일하기 싫어서"], ans:1, exp:"Jack London은 Poverty(가난)한 어린 시절에도 불구하고 독학(self-educated)으로 공부했습니다." },
+{ part:6, diff:1, q:"Jack London의 대표작 'The Call of the Wild'와 'White Fang'의 공통 테마는?", opts:["사랑과 로맨스","Humanity vs Nature / Man vs Man","사회 계급과 빈부격차","정치와 혁명"], ans:1, exp:"두 작품 모두 Humanity vs Nature(인류 vs 자연)와 Man vs Man(인간 vs 인간)을 다룹니다." },
+{ part:6, diff:1, q:"Jack London의 초기 작품에 영향을 미친 경험은?", opts:["파리 유학","Klondike 골드러시 광부 경험","태평양 항해","정치 운동"], ans:1, exp:"Klondike에서의 광부(miner) 경험이 Jack London의 초기 작품에 큰 영향을 미쳤습니다." },
+{ part:6, diff:2, q:"Jack London의 30대 초반 태평양 항해에 사용된 요트 이름은?", opts:["White Fang","Snark","Martin","Wild"], ans:1, exp:"Jack London은 요트 'Snark'로 2년간 태평양을 항해했습니다." },
+{ part:6, diff:2, q:"'Martin Eden'(1909)이 출판된 시기는?", opts:["Klondike 시절","태평양 항해 중","어린 시절","명성을 얻은 직후"], ans:1, exp:"'Martin Eden'(1909)은 Jack London이 요트 Snark로 태평양을 항해하던 중 출판되었습니다." },
+{ part:6, diff:2, q:"Jack London의 작품 전반에 흐르는 핵심 주제는?", opts:["낭만적 사랑","강한 의지력(high power of will)과 신념","물질적 성공 추구","사회 체제 순응"], ans:1, exp:"Jack London의 글에는 high power of will(강한 의지력)이 특징이며, 자신의 신념대로 살았습니다." },
+{ part:6, diff:2, q:"Jack London의 초기 작품에서 나타나는 분위기는?", opts:["낭만적이고 달콤한","가혹하고 냉혹한(harsh, relentless) 분위기","평화롭고 여유로운","도시적이고 세련된"], ans:1, exp:"Jack London의 초기 작품에는 Klondike 경험에서 비롯된 harsh(가혹한), relentless(냉혹한) 분위기가 나타납니다." },
+{ part:6, diff:3, q:"'Martin Eden'의 주요 주제인 'social class divisions'가 의미하는 것은?", opts:["인종 차별","사회 계급 간 분열과 격차","지역 갈등","종교적 분열"], ans:1, exp:"'Martin Eden'은 social class divisions(사회 계급 분열)과 individualism(개인주의)을 다룹니다." },
+{ part:6, diff:3, q:"Jack London이 명성과 재산을 얻은 후에도 만족하지 못한 이유는?", opts:["더 많은 돈을 원해서","내면의 탐구와 모험 정신 때문","가족 문제","건강 악화"], ans:1, exp:"Jack London은 자신의 신념(belief)을 따르는 삶을 살았으며, 명성과 재산 너머의 것을 추구했습니다." },
+{ part:6, diff:3, q:"Jack London의 삶과 작품에서 공통적으로 나타나는 특징은?", opts:["순응과 타협","자신의 신념을 갖고 그에 따라 행동","물질적 안정 추구","사회 비판 회피"], ans:1, exp:"Jack London은 개인의 신념(belief)을 갖고 그 신념대로 살았으며, 작품에도 이런 철학이 반영됩니다." },
+
+/* ── PART 7 추가 문제 ── */
+{ part:7, diff:1, q:"목성형 행성(Jovian Planets)에 해당하는 것은?", opts:["수성, 금성, 지구, 화성","목성, 토성, 천왕성, 해왕성","수성, 금성, 목성, 토성","지구, 화성, 목성, 천왕성"], ans:1, exp:"Jovian Planets은 Jupiter(목성), Saturn(토성), Uranus(천왕성), Neptune(해왕성)입니다." },
+{ part:7, diff:1, q:"지구형 행성의 형성 과정은?", opts:["가스 냉각","우주 잔해 응축(Condensation of debris)으로 고체 코어 형성","행성 충돌","태양 분열"], ans:1, exp:"지구형 행성은 Condensation of debris(우주 잔해의 응축)로 고체 코어가 형성되었습니다." },
+{ part:7, diff:1, q:"목성형 행성이 '가스 행성'인 이유는?", opts:["태양 폭발로 가스 생성","태양과 거리가 멀어 대기가 냉각·응고","충돌로 가스 방출","내부에서 가스 생성"], ans:1, exp:"목성형 행성은 태양과의 거리(distance)가 멀어 대기가 냉각되고 응고되어 GAS PLANETS이 됩니다." },
+{ part:7, diff:2, q:"수성(Mercury)의 자전 특징은?", opts:["하루에 한 번 자전","약 1달에 한 번 자전","자전하지 않음","지구와 같은 주기"], ans:1, exp:"Mercury(수성)는 near-vacuum(진공에 가까운 상태)을 유지하며 약 1달에 한 번 자전합니다." },
+{ part:7, diff:2, q:"금성(Venus)의 독특한 자전 방향은?", opts:["지구와 같은 방향","반대 방향(opposite direction)","자전하지 않음","랜덤하게 변함"], ans:1, exp:"Venus(금성)는 다른 행성과 달리 opposite direction(반대 방향)으로 자전합니다." },
+{ part:7, diff:2, q:"목성형 행성이 지구형보다 자전이 빠른 이유와 관련된 특징은?", opts:["크기가 작아서","가스 구성과 더 빠른 자전(More spins)","고체 표면이 없어서","위성이 없어서"], ans:1, exp:"목성형 행성은 지구형보다 More spins(더 많이 자전)하는 특징이 있습니다." },
+{ part:7, diff:2, q:"지구형 행성의 총 위성(moon) 수는?", opts:["0개","3개","5개","8개"], ans:1, exp:"지구형 행성의 위성은 총 3개입니다. 지구 1개, 화성 2개이며 수성·금성은 위성이 없습니다." },
+{ part:7, diff:3, q:"화성에 자기장(magnetic field)이 없는 것이 중요한 이유는?", opts:["위성 수에 영향","대기와 생명체 보호가 어렵다는 것을 의미","자전 속도에 영향","고리 시스템에 영향"], ans:1, exp:"화성은 자기장이 전혀 없어(자기장 아예 없음) 대기 보호와 생명체 거주 가능성에 큰 영향을 미칩니다." },
+{ part:7, diff:3, q:"목성형 행성만이 가지는 공통 특징은?", opts:["고체 표면","산소 대기","Ring system(고리 시스템)","자기장 없음"], ans:2, exp:"목성형 행성은 각자 Ring system(고리 시스템)을 가집니다. 지구형 행성에는 없는 특징입니다." },
+{ part:7, diff:3, q:"지구가 다른 지구형 행성과 구별되는 결정적 특징은?", opts:["자전 주기","CO2 대기","산소(oxygen)와 물(water) 보유","근접 진공 상태"], ans:2, exp:"지구는 oxygen(산소)과 water(물)를 보유하고 있어 다른 지구형 행성과 구별됩니다." },
+
+/* ── PART 8 추가 문제 ── */
+{ part:8, diff:1, q:"명왕성(Pluto)을 발견한 사람은?", opts:["Mike Brown","Charon","Tombough","Neil Armstrong"], ans:2, exp:"1930년 Tombough가 Pluto를 발견했습니다. 당시 크기는 정확히 파악되지 않았습니다." },
+{ part:8, diff:1, q:"Eris를 발견한 사람은?", opts:["Tombough","Charon","Mike Brown","Hubble"], ans:2, exp:"2005년 Mike Brown이 Pluto보다 25% 더 무거운 Eris를 발견했습니다." },
+{ part:8, diff:1, q:"'New Horizons'는 언제 Pluto에 파견되었나?", opts:["1930년","1978년","2005년","2015년"], ans:3, exp:"2015년 탐사선 'New Horizons'가 Pluto에 파견되었습니다." },
+{ part:8, diff:2, q:"Charon 발견 이후 알 수 있게 된 것은?", opts:["Pluto가 행성임을 확정","Pluto의 크기를 약 2,300km로 추정 가능","Kuiper Belt 발견","Eris 존재 파악"], ans:1, exp:"1978년 Charon 발견으로 Pluto의 크기를 약 2,300km로 어렴풋이 추정할 수 있게 되었습니다." },
+{ part:8, diff:2, q:"Kuiper Belt의 특징은?", opts:["태양 주변 소행성대","약 70,000개 천체를 포함하는 벨트","목성 궤도 안쪽 위치","위성들의 집합"], ans:1, exp:"Kuiper Belt는 약 70,000개의 천체(objects)를 포함하며, Pluto는 한때 그 일부로 여겨졌습니다." },
+{ part:8, diff:2, q:"Pluto가 Dwarf Planet(왜소행성)이 된 결정적 계기는?", opts:["크기가 너무 작아서","Eris 발견으로 행성 정의가 재검토됨","New Horizons 결과","Charon 발견"], ans:1, exp:"Eris 발견으로 '행성이란 무엇인가'에 대한 재정의가 이루어지면서 Pluto는 Dwarf Planet이 되었습니다." },
+{ part:8, diff:3, q:"Pluto 역사의 순서가 올바른 것은?", opts:["Pluto발견→Eris발견→Charon발견→Dwarf Planet","Pluto발견→Charon발견→Eris발견→Dwarf Planet→New Horizons","Charon발견→Pluto발견→Eris발견→Dwarf Planet","Eris발견→Pluto발견→Charon발견"], ans:1, exp:"1930 Pluto발견 → 1978 Charon발견 → 2005 Eris발견 → Dwarf Planet 재정의 → 2015 New Horizons입니다." },
+{ part:8, diff:3, q:"Eris가 Pluto보다 얼마나 더 무거운가?", opts:["10%","25%","50%","2배"], ans:1, exp:"Eris는 Pluto보다 25% more massive(25% 더 무거움)합니다. 이것이 Pluto의 행성 지위에 의문을 제기했습니다." },
+{ part:8, diff:3, q:"2015년 'New Horizons' 파견의 의미는?", opts:["Pluto를 다시 행성으로 복원","Pluto가 여전히 과학계에서 중요하다는 것을 보여줌","Kuiper Belt 탐사 목적","Eris 탐사"], ans:1, exp:"'New Horizons' 파견은 Pluto가 Dwarf Planet이 된 후에도 여전히 과학적으로 중요하게 거론됨을 보여줍니다." },
+{ part:8, diff:1, q:"Pluto가 발견된 연도는?", opts:["1900년","1930년","1978년","2005년"], ans:1, exp:"Pluto는 1930년 Tombough에 의해 발견되었습니다." },
+
+/* ── PART 9 추가 문제 ── */
+{ part:9, diff:1, q:"Dixieland Jazz의 근본 특징 3가지는?", opts:["정형화, 추상적, 암시적","즉각적(instant), 감정적(emotional), 즉흥적(impulsive)","느린 템포, 대규모, 댄스","정확한 악보 중심"], ans:1, exp:"Dixieland Jazz의 근본은 instant(즉각적), emotional(감정적), impulsive(즉흥적)입니다." },
+{ part:9, diff:1, q:"1920년대 재즈를 전국으로 확산시킨 매체는?", opts:["신문","텔레비전","라디오(RADIO)","인터넷"], ans:2, exp:"1920년대 RADIO가 재즈의 광범위한 보급(widespread)에 크게 기여했습니다." },
+{ part:9, diff:1, q:"Bebop Jazz의 대표 음악가는?", opts:["Louis Armstrong","Bix Beiderbecke","Duke Ellington","Miles Davis"], ans:3, exp:"Miles Davis는 Bebop Jazz의 대표 음악가로, 추상적(Abstract)이고 암시적(Allusive)인 스타일이 특징입니다." },
+{ part:9, diff:2, q:"Hot Jazz(Chicago)를 이끈 음악가들은?", opts:["Miles Davis & Duke Ellington","Louis Armstrong & Bix Beiderbecke","Bob Marley & Louis Armstrong","Charlie Parker & Miles Davis"], ans:1, exp:"1920년대 Louis Armstrong과 Bix Beiderbecke가 앙상블에서 자유롭고 창의적인 Hot Jazz로 전환했습니다." },
+{ part:9, diff:2, q:"1930년대 Swing에서 새롭게 추가된 요소는?", opts:["즉흥 연주와 감정","추상적 화음 구조","Upbeat tempo와 dance","소규모 앙상블"], ans:2, exp:"Swing(1930s)에는 Upbeat tempo(빠른 템포)와 dance(댄스)가 추가되었습니다." },
+{ part:9, diff:2, q:"Bebop Jazz가 Swing과 다른 점은?", opts:["더 큰 그룹 사용","댄스 중심","Less dance, more sophisticated(더 정형화, 추상적)","더 단순한 멜로디"], ans:2, exp:"Bebop은 Swing보다 Less dance(덜 춤추고), more sophisticated(더 정형화)되고 Abstract(추상적)합니다." },
+{ part:9, diff:2, q:"재즈가 1910년대에 남부에서 어떻게 변화했나?", opts:["대규모 오케스트라로 발전","시카고·세인트루이스로 이동, 솔리스트 증가","유럽으로 수출","라디오로 확산"], ans:1, exp:"1910년대 재즈는 뉴올리언스에서 시카고와 세인트루이스로 이동하며 소규모에서 더 강력해지고 솔리스트가 증가했습니다." },
+{ part:9, diff:3, q:"재즈의 발전 흐름에서 '추상성'이 증가한 시기는?", opts:["Dixieland에서 Hot Jazz로","Hot Jazz에서 Swing으로","Swing에서 Bebop으로","Dixieland 자체"], ans:2, exp:"Bebop(1940~50s)은 Abstract(추상적)이고 Allusive(암시적)하여 재즈의 추상성이 가장 높아진 시기입니다." },
+{ part:9, diff:3, q:"1800년대 후반 Dixieland Jazz의 규모는?", opts:["대규모 오케스트라","소규모 앙상블 그룹(small ensemble groups)","독주(솔로)","합창단"], ans:1, exp:"1800년대 후반 Dixieland Jazz는 small ensemble groups(소규모 앙상블 그룹)으로 연주되었습니다." },
+{ part:9, diff:3, q:"재즈 발전에서 'RADIO'가 미친 영향은?", opts:["재즈를 클래식화","재즈의 광범위한 보급(widespread) 가능","재즈를 유럽에 수출","Bebop Jazz 탄생"], ans:1, exp:"1920년대 RADIO는 재즈를 전국에 보급(widespread)하는 데 결정적 역할을 했습니다." },
+
+/* ── PART 10 추가 문제 ── */
+{ part:10, diff:1, q:"Bob Marley의 출신 도시와 나라는?", opts:["런던, 영국","킹스턴, 자메이카(Kingston, Jamaica)","뉴욕, 미국","트리니다드 토바고"], ans:1, exp:"Bob Marley는 Kingston, Jamaica(킹스턴, 자메이카)에서 태어났습니다." },
+{ part:10, diff:1, q:"Bob Marley가 결성한 그룹의 이름은?", opts:["The Rastafarians","The Reggae Kings","The Wailers","The Islanders"], ans:2, exp:"Bob Marley는 14세에 'The Wailers'를 결성했습니다." },
+{ part:10, diff:1, q:"Bob Marley가 세상을 떠난 원인은?", opts:["암살","사고","암(cancer)","심장병"], ans:2, exp:"Bob Marley는 암(cancer)으로 1981년에 세상을 떠났습니다." },
+{ part:10, diff:2, q:"Bob Marley의 음악에 영향을 준 종교·철학은?", opts:["이슬람","기독교 복음주의","Rastafarian(라스타파리안)","불교"], ans:2, exp:"Bob Marley는 Rastafarian influences(라스타파리안 영향)를 받았으며, 이는 음악과 메시지에 깊은 영향을 미쳤습니다." },
+{ part:10, diff:2, q:"Bob Marley가 Island Records와 계약한 시기는?", opts:["1960년대 초","1970년대 초(early 1970s)","1980년대 초","1950년대 후반"], ans:1, exp:"Bob Marley는 early 1970s(1970년대 초)에 Island Records와 계약했습니다." },
+{ part:10, diff:2, q:"Bob Marley가 World Tour를 통해 전달하려 한 역할은?", opts:["단순한 엔터테이너","Prophet(예언자)처럼 메시지 전달자","스포츠 홍보대사","패션 아이콘"], ans:1, exp:"Bob Marley는 World Tour를 통해 Prophet(예언자)처럼 사회적 메시지를 전달하는 역할을 했습니다." },
+{ part:10, diff:2, q:"Bob Marley의 앨범 'Exodus'가 발매된 연도는?", opts:["1974년","1977년","1979년","1980년"], ans:1, exp:"Exodus는 1977년에 발매되었습니다. Survival(1979), Uprising(1980) 순서입니다." },
+{ part:10, diff:3, q:"Bob Marley의 정치적 활동(Political activism)의 핵심 내용은?", opts:["정당 창설","레게 음악을 통해 가난한 사람들의 권리와 부패 사회 비판","군사 혁명","경제 개혁 촉구"], ans:1, exp:"Bob Marley는 Political activism(정치적 활동주의)으로 가난한 이들의 권리를 주장하고 부패한 사회를 비판했습니다." },
+{ part:10, diff:3, q:"'Legend'(1984) 앨범의 특징은?", opts:["생전 마지막 앨범","사후 발매된 레거시 대표 앨범","Island Records 데뷔 앨범","World Tour 기념 앨범"], ans:1, exp:"'Legend'는 Bob Marley 사후 1984년에 발매된 앨범으로 그의 레거시(legacy)를 대표합니다." },
+{ part:10, diff:3, q:"Bob Marley가 자메이카에서 겪은 위험한 사건은?", opts:["교통사고","암살 시도(assassination attempt)","투옥","추방"], ans:1, exp:"Bob Marley는 World Tour 중 자메이카에서 assassination attempt(암살 시도)를 경험했습니다." },
 ];
 
 // ═══════════════════════════════════════════════════════
@@ -1071,6 +1238,9 @@ let state = {
   answered: false,
   results: [],
   selectedParts: PARTS.map(p=>p.id),
+  selectedDiffs: [1,2,3],
+  lastPartIds: PARTS.map(p=>p.id),
+  lastDiffs: [1,2,3],
 };
 
 // ═══════════════════════════════════════════════════════
@@ -1091,13 +1261,14 @@ function getDiffInfo(d) {
   return { label:'HARD', stars:'★★★', cls:'hard' };
 }
 
-function buildQuiz(partIds) {
+function buildQuiz(partIds, diffs) {
   const TOTAL = 30;
   const MIN_PER_PART = 2;
+  const activeDiffs = (diffs && diffs.length > 0) ? diffs : [1,2,3];
 
   const pools = {};
   partIds.forEach(pid => {
-    pools[pid] = shuffle(QUESTIONS.filter(q => q.part === pid));
+    pools[pid] = shuffle(QUESTIONS.filter(q => q.part === pid && activeDiffs.includes(q.diff)));
   });
 
   const selected = [];
@@ -1143,6 +1314,30 @@ function initHome() {
       <div class="q-count">${count}문제</div>
     </div>`;
   }).join('');
+  updateDiffPills();
+}
+
+function setDiff(d) {
+  if (d === 'all') {
+    state.selectedDiffs = [1,2,3];
+  } else {
+    const idx = state.selectedDiffs.indexOf(d);
+    if (idx === -1) {
+      state.selectedDiffs.push(d);
+    } else if (state.selectedDiffs.length > 1) {
+      state.selectedDiffs.splice(idx, 1);
+    }
+  }
+  updateDiffPills();
+}
+
+function updateDiffPills() {
+  const isAll = [1,2,3].every(d => state.selectedDiffs.includes(d));
+  const g = id => document.getElementById(id);
+  if(g('dpAll'))  g('dpAll').classList.toggle('active', isAll);
+  if(g('dpEasy')) g('dpEasy').classList.toggle('active', !isAll && state.selectedDiffs.includes(1));
+  if(g('dpMed'))  g('dpMed').classList.toggle('active',  !isAll && state.selectedDiffs.includes(2));
+  if(g('dpHard')) g('dpHard').classList.toggle('active', !isAll && state.selectedDiffs.includes(3));
 }
 
 // ═══════════════════════════════════════════════════════
@@ -1157,12 +1352,19 @@ function startPartQuiz(partId) {
   startQuiz([partId]);
 }
 
-function startQuiz(partIds) {
-  state.quizQuestions = buildQuiz(partIds);
+function startQuiz(partIds, diffs) {
+  const useDiffs = diffs || state.selectedDiffs;
+  state.lastPartIds = [...partIds];
+  state.lastDiffs   = [...useDiffs];
+  state.quizQuestions = buildQuiz(partIds, useDiffs);
   state.currentIdx = 0;
   state.results = [];
   showScreen('quiz');
   renderQuestion();
+}
+
+function replayQuiz() {
+  startQuiz(state.lastPartIds, state.lastDiffs);
 }
 
 function openPartModal() {
@@ -1327,3 +1529,4 @@ initHome();
 </script>
 </body>
 </html>
+
