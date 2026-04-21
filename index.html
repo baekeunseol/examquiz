@@ -141,6 +141,14 @@
         .diff-pill.lang-en.active { background: var(--accent2); color: #fff;    border-color: var(--accent2); }
         .diff-pill.lang-both.active { background: var(--accent); color: #0c0c0f; border-color: var(--accent); }
 
+        /* TYPE PILLS */
+        .diff-pill.type-mcq { border-color: rgba(232,255,71,0.25); color: var(--accent); }
+        .diff-pill.type-mcq.active { background: var(--accent); color: #0c0c0f; border-color: var(--accent); }
+        .diff-pill.type-short { border-color: rgba(71,200,255,0.25); color: var(--accent3); }
+        .diff-pill.type-short.active { background: var(--accent3); color: #0c0c0f; border-color: var(--accent3); }
+        .diff-pill.type-essay { border-color: rgba(255,107,71,0.25); color: var(--accent2); }
+        .diff-pill.type-essay.active { background: var(--accent2); color: #fff; border-color: var(--accent2); }
+
         /* LANG BADGE on question */
         .q-lang-badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1.5px; padding: 3px 9px; border-radius: 4px; text-transform: uppercase; }
         .q-lang-badge.ko { background: rgba(71,200,255,0.12); color: var(--accent3); border: 1px solid rgba(71,200,255,0.25); }
@@ -218,9 +226,9 @@
             <div class="diff-section-title">// Question Type</div>
             <div class="diff-pills">
                 <button class="diff-pill all active"   id="tpAll"   onclick="setType('all')">ALL</button>
-                <button class="diff-pill"              id="tpMCQ"   onclick="setType('mcq')"   style="border-color:#e8ff4740;color:var(--accent)">객관식 MCQ</button>
-                <button class="diff-pill"              id="tpShort" onclick="setType('short')" style="border-color:#47c8ff40;color:var(--accent3)">단답형 SHORT</button>
-                <button class="diff-pill"              id="tpEssay" onclick="setType('essay')" style="border-color:#ff6b4740;color:var(--accent2)">서술형 ESSAY</button>
+                <button class="diff-pill type-mcq"     id="tpMCQ"   onclick="setType('mcq')">객관식 MCQ</button>
+                <button class="diff-pill type-short"   id="tpShort" onclick="setType('short')">단답형 SHORT</button>
+                <button class="diff-pill type-essay"   id="tpEssay" onclick="setType('essay')">서술형 ESSAY</button>
             </div>
         </div>
     </div>
@@ -579,6 +587,107 @@ const QUESTIONS = [
 {part:10,diff:3,lang:'en',q:"Which religion and philosophy heavily influenced Bob Marley's music?",opts:["Islam","Evangelical Christianity","Rastafarianism","Buddhism"],ans:2,exp:"Bob Marley was deeply influenced by Rastafarian beliefs, which shaped his music and message."},
 {part:10,diff:3,lang:'en',q:"What is the correct order of Bob Marley's albums?",opts:["Survival→Exodus→Uprising","Exodus(1977)→Survival(1979)→Uprising(1980)","Uprising→Survival→Exodus","Legend→Exodus→Survival"],ans:1,exp:"Exodus (1977) → Survival (1979) → Uprising (1980). Legend was released posthumously in 1984."},
 {part:10,diff:3,lang:'en',q:"What dangerous event occurred during Bob Marley's World Tour?",opts:["Grammy Award controversy","Nobel Peace Prize nomination","An assassination attempt in Jamaica","A UN speech"],ans:2,exp:"Bob Marley survived an assassination attempt in Jamaica during his World Tour — he was seen as a Prophet delivering a message."},
+
+/* ── ADDITIONAL MCQ QUESTIONS (Ko & En) ── */
+// PART 1
+{part:1,diff:2,lang:'ko',q:"Turner의 초기 작품이 속한 미술 사조 혹은 경향은 무엇에 가깝나요?",opts:["추상주의","사실주의(Realism)","입체주의","초현실주의"],ans:1,exp:"Turner의 초기 작품은 Realism(사실주의)에 가깝습니다."},
+{part:1,diff:3,lang:'ko',q:"Turner의 후기 작품이 인상주의에 준 직접적인 영향은 무엇입니까?",opts:["빛과 대기의 자유로운 표현","건축물의 정밀한 묘사","역사화의 부활","콜라주 기법의 도입"],ans:0,exp:"Turner는 후기 작품에서 빛과 대기를 자유롭게 표현하였고, 이것이 인상주의에 큰 영향을 주었습니다."},
+{part:1,diff:2,lang:'en',q:"Which art movement or tendency does Turner's early work most closely align with?",opts:["Abstract art","Realism","Cubism","Surrealism"],ans:1,exp:"Turner's early work is characterized by Realism and detailed depictions of nature."},
+{part:1,diff:3,lang:'en',q:"What direct influence did Turner's late work have on Impressionism?",opts:["The free treatment of light and atmosphere","Precise architectural depiction","The revival of historical painting","Introduction of collage techniques"],ans:0,exp:"Turner's free treatment of light and atmosphere in his late works greatly influenced Impressionist painters."},
+
+// PART 2
+{part:2,diff:2,lang:'ko',q:"Analytic Cubism(분석적 입체주의)에서 대상을 묘사하는 방식은?",opts:["다양한 각도에서 본 대상을 하나의 평면에 해체하여 재조합","현실과 똑같이 묘사","빛의 순간적인 인상을 포착","꿈의 세계를 무의식적으로 표현"],ans:0,exp:"분석적 입체주의는 대상을 여러 각도에서 본 형태로 해체하고 기하학적 형태로 재조합했습니다."},
+{part:2,diff:1,lang:'ko',q:"Synthetic Cubism(합성 입체주의)은 어떤 요소를 강조하나요?",opts:["단색조의 색상","원근법의 극대화","콜라주와 밝은 색채","정밀한 인체 묘사"],ans:2,exp:"Synthetic Cubism은 콜라주 기법과 선명하고 화려한 색상을 강조합니다."},
+{part:2,diff:2,lang:'en',q:"How did Analytic Cubism depict subjects?",opts:["By deconstructing subjects from multiple angles and reassembling them on one plane","By depicting them exactly as in reality","By capturing the fleeting impression of light","By expressing the unconscious dream world"],ans:0,exp:"Analytic Cubism deconstructs subjects into geometric shapes viewed from multiple angles and reassembles them."},
+{part:2,diff:1,lang:'en',q:"What elements does Synthetic Cubism emphasize?",opts:["Monochromatic color palette","Maximized perspective","Collage techniques and vivid colors","Precise human anatomy"],ans:2,exp:"Synthetic Cubism emphasizes collage techniques and the use of vivid colors."},
+
+// PART 3
+{part:3,diff:2,lang:'ko',q:"퇴적암이 열과 압력을 받으면 어떤 암석으로 변하나요?",opts:["화강암","변성암(Metamorphic)","현무암","화성암"],ans:1,exp:"퇴적암이나 화성암이 열과 압력을 받으면 변성암이 됩니다."},
+{part:3,diff:1,lang:'ko',q:"마그마가 화산 밖으로 분출하여 냉각된 것을 무엇이라 부르나요?",opts:["용암(Lava)","퇴적물","석회암","점토"],ans:0,exp:"화산 밖으로 분출한 마그마를 용암(Lava)이라고 하며, 이것이 식어 화성암이 됩니다."},
+{part:3,diff:2,lang:'en',q:"What type of rock does Sedimentary rock become when subjected to high heat and pressure?",opts:["Granite","Metamorphic rock","Basalt","Igneous rock"],ans:1,exp:"Sedimentary and Igneous rocks become Metamorphic rock when subjected to high temperature and pressure."},
+{part:3,diff:1,lang:'en',q:"What is magma called when it erupts out of a volcano and cools?",opts:["Lava","Sediment","Limestone","Clay"],ans:0,exp:"Magma erupted out of a volcano is called Lava, which cools to form igneous rock."},
+
+// PART 4
+{part:4,diff:3,lang:'ko',q:"피압 대수층(Confined Aquifer)의 물이 오염될 경우 회복하기 어려운 이유는?",opts:["물의 흐름이 매우 빠르기 때문","불투수성 층으로 인해 물의 순환과 재충전이 매우 느리기 때문","위치적으로 너무 얕아서","빗물이 지속적으로 씻어내기 때문"],ans:1,exp:"피압 대수층은 불투수성 층에 갇혀 있어 재충전과 물의 순환이 매우 느리므로 한 번 오염되면 회복이 어렵습니다."},
+{part:4,diff:2,lang:'ko',q:"비제한 대수층(Unconfined Aquifer)의 수위(지하수면) 변동에 가장 큰 영향을 미치는 요인은?",opts:["지진 활동","강수량과 기후 변화","마그마의 열기","해수의 밀도"],ans:1,exp:"비제한 대수층은 지표면과 연결되어 있어 강수량과 기후에 따라 수위가 크게 변동합니다."},
+{part:4,diff:3,lang:'en',q:"Why is it difficult for a Confined Aquifer to recover if it becomes contaminated?",opts:["Because the water flow is extremely fast","Because the impermeable layer makes water circulation and recharge very slow","Because it is located too shallowly","Because rainwater constantly washes it away"],ans:1,exp:"Confined aquifers are sealed by impermeable layers, making recharge and circulation very slow, so contamination persists for a long time."},
+{part:4,diff:2,lang:'en',q:"What factor most heavily influences the water table level of an Unconfined Aquifer?",opts:["Earthquake activity","Precipitation and climate change","Heat from magma","Density of seawater"],ans:1,exp:"Because unconfined aquifers are directly connected to the surface, their water levels fluctuate heavily based on rainfall and climate."},
+
+// PART 5
+{part:5,diff:2,lang:'ko',q:"신고전주의가 고대 그리스와 로마의 예술을 모방한 가장 큰 이유는 무엇입니까?",opts:["자유분방한 상상력을 위해","당시의 정치적 혼란을 부추기기 위해","논리, 조화, 그리고 이성적 질서를 확립하기 위해","개인의 감정을 극대화하기 위해"],ans:2,exp:"신고전주의는 고대 그리스와 로마의 논리, 조화, 이성적 질서를 이상적인 모델로 삼았습니다."},
+{part:5,diff:2,lang:'ko',q:"낭만주의 문학에서 '자연'을 대하는 태도는?",opts:["정복해야 할 대상","이성적으로 분석해야 할 과학적 대상","인간의 내면과 감정을 투영하는 신비로운 대상","경제적 이익을 위한 자원"],ans:2,exp:"낭만주의에서 자연은 단순한 풍경이 아니라 인간의 감정과 영혼을 투영하는 숭고하고 신비로운 대상이었습니다."},
+{part:5,diff:2,lang:'en',q:"Why did Neoclassicism emulate the art of ancient Greece and Rome?",opts:["To promote unrestrained imagination","To encourage political chaos of the time","To establish logic, harmony, and rational order","To maximize individual emotions"],ans:2,exp:"Neoclassicism looked to ancient Greece and Rome as ideal models of logic, harmony, and rational order."},
+{part:5,diff:2,lang:'en',q:"How did Romantic literature approach 'nature'?",opts:["As an object to be conquered","As a scientific object for rational analysis","As a mystical and sublime reflection of human emotion and spirit","As a resource for economic gain"],ans:2,exp:"In Romanticism, nature was not merely scenery or a resource, but a sublime and mystical reflection of human emotions."},
+
+// PART 6
+{part:6,diff:2,lang:'ko',q:"Jack London의 소설에서 두드러지는 철학적 특징은?",opts:["허무주의","자연주의(Naturalism)와 생존 투쟁","유미주의","형식주의"],ans:1,exp:"그의 작품은 냉혹한 자연 환경 속에서 인간이나 동물의 생존 투쟁을 그리는 자연주의적 성향이 강합니다."},
+{part:6,diff:1,lang:'ko',q:"Jack London이 경험한 클론다이크 골드러시는 어느 지역에서 일어났나요?",opts:["미국 텍사스","캐나다 유콘 테리토리(Yukon Territory)","오스트레일리아","남아프리카"],ans:1,exp:"클론다이크 골드러시는 캐나다 서북부 유콘 테리토리에서 발생했습니다."},
+{part:6,diff:2,lang:'en',q:"What philosophical characteristic stands out in Jack London's novels?",opts:["Nihilism","Naturalism and the struggle for survival","Aestheticism","Formalism"],ans:1,exp:"His works exhibit a strong Naturalistic tendency, depicting the brutal struggle for survival in harsh natural environments."},
+{part:6,diff:1,lang:'en',q:"In which region did the Klondike Gold Rush that Jack London experienced take place?",opts:["Texas, USA","Yukon Territory, Canada","Australia","South Africa"],ans:1,exp:"The Klondike Gold Rush took place in the Yukon Territory of northwestern Canada."},
+
+// PART 7
+{part:7,diff:2,lang:'ko',q:"태양계에서 밀도가 가장 높은 행성은 무엇인가요?",opts:["지구(Earth)","목성(Jupiter)","수성(Mercury)","토성(Saturn)"],ans:0,exp:"지구형 행성 중에서도 지구는 태양계 행성 전체에서 가장 밀도가 높습니다."},
+{part:7,diff:2,lang:'ko',q:"토성(Saturn)의 고리는 주로 무엇으로 이루어져 있나요?",opts:["수소 가스와 헬륨","철과 니켈","수많은 얼음 조각과 암석 부스러기","액체 메탄"],ans:2,exp:"토성을 비롯한 목성형 행성의 고리는 주로 얼음 조각과 암석, 먼지로 구성되어 있습니다."},
+{part:7,diff:2,lang:'en',q:"Which planet has the highest density in the solar system?",opts:["Earth","Jupiter","Mercury","Saturn"],ans:0,exp:"Among the Terrestrial planets, Earth is the densest planet in the entire solar system."},
+{part:7,diff:2,lang:'en',q:"What are the rings of Saturn primarily composed of?",opts:["Hydrogen gas and helium","Iron and nickel","Countless pieces of ice and rocky debris","Liquid methane"],ans:2,exp:"The ring systems of Jovian planets, especially Saturn, are composed mostly of ice particles, rocky debris, and dust."},
+
+// PART 8
+{part:8,diff:2,lang:'ko',q:"왜소행성(Dwarf Planet)으로 분류되기 위한 조건 중, 명왕성이 충족하지 못한 것은?",opts:["태양을 주위로 공전할 것","충분한 질량을 가져 구형을 유지할 것","자신의 궤도 주변의 다른 천체들을 치워버릴(Clear the neighborhood) 것","위성을 가질 것"],ans:2,exp:"행성의 3가지 조건 중 명왕성은 궤도 주변 천체들을 지배하거나 청소하지 못하여(Clear the neighborhood) 왜소행성으로 강등되었습니다."},
+{part:8,diff:1,lang:'ko',q:"명왕성이 포함된 태양계 외곽의 얼음 천체 밀집 지역을 무엇이라 부르나요?",opts:["소행성대(Asteroid Belt)","오르트 구름(Oort Cloud)","카이퍼 벨트(Kuiper Belt)","은하 중심"],ans:2,exp:"명왕성은 해왕성 궤도 밖의 얼음 천체들이 모여 있는 카이퍼 벨트에 속해 있습니다."},
+{part:8,diff:2,lang:'en',q:"Which criteria for a full-fledged planet did Pluto fail to meet, leading to its reclassification as a Dwarf Planet?",opts:["Orbiting the Sun","Having sufficient mass to assume a spherical shape","Clearing the neighborhood around its orbit","Having a moon"],ans:2,exp:"Pluto was demoted to a dwarf planet because it has not 'cleared the neighborhood' of other debris around its orbit."},
+{part:8,diff:1,lang:'en',q:"What is the region of icy bodies in the outer solar system where Pluto resides called?",opts:["Asteroid Belt","Oort Cloud","Kuiper Belt","Galactic Center"],ans:2,exp:"Pluto resides in the Kuiper Belt, a region beyond Neptune populated by icy bodies."},
+
+// PART 9
+{part:9,diff:2,lang:'ko',q:"Jazz 음악에서 '즉흥 연주(Improvisation)'가 갖는 의미는?",opts:["작곡가의 의도를 완벽히 재현하는 것","연주자가 실시간으로 멜로디를 창조하고 감정을 표현하는 것","악보 없이 암기해서 연주하는 것","관객의 요청에 따라 곡을 바꾸는 것"],ans:1,exp:"재즈의 핵심인 즉흥 연주는 연주자가 연주 순간에 실시간으로 선율을 창작하며 자신의 감정을 담아내는 것을 의미합니다."},
+{part:9,diff:2,lang:'ko',q:"1930년대 Swing 시대의 빅 밴드(Big Band) 편성에 주로 쓰인 악기 군은?",opts:["현악기 중심","브라스(Brass), 목관악기, 리듬 섹션","신디사이저와 일렉트릭 기타","타악기 전용"],ans:1,exp:"스윙 시대의 빅 밴드는 트럼펫, 트롬본 등의 브라스, 색소폰 같은 목관악기, 그리고 피아노, 베이스, 드럼의 리듬 섹션으로 구성되었습니다."},
+{part:9,diff:2,lang:'en',q:"What does 'Improvisation' mean in Jazz music?",opts:["Perfectly replicating the composer's intentions","Performers creating melodies in real-time and expressing their emotions","Playing from memory without sheet music","Changing the song based on audience requests"],ans:1,exp:"Improvisation, the heart of Jazz, means the performer creates the melody spontaneously in the moment, reflecting their emotions."},
+{part:9,diff:2,lang:'en',q:"What instrument families primarily made up the Big Bands during the Swing era of the 1930s?",opts:["Mainly string instruments","Brass, woodwinds, and a rhythm section","Synthesizers and electric guitars","Percussion instruments exclusively"],ans:1,exp:"Swing era big bands typically consisted of brass (trumpets, trombones), woodwinds (saxophones), and a rhythm section (piano, bass, drums)."},
+
+// PART 10
+{part:10,diff:2,lang:'ko',q:"Bob Marley의 음악이 제3세계 사람들에게 준 가장 큰 영향은 무엇인가요?",opts:["새로운 댄스 스타일 전파","억압받는 사람들에게 희망과 저항의 메시지 전달","자메이카 관광업 발전","록 음악의 확산"],ans:1,exp:"그의 음악은 단순한 오락을 넘어 억압받는 제3세계 사람들에게 희망, 평화, 저항의 메시지를 전하는 정치적, 영적 힘을 가졌습니다."},
+{part:10,diff:1,lang:'ko',q:"라스타파리아니즘(Rastafarianism)의 상징 중 Bob Marley가 고수했던 헤어스타일은?",opts:["모호크(Mohawk)","드레드록스(Dreadlocks)","스킨헤드(Skinhead)","포니테일(Ponytail)"],ans:1,exp:"Bob Marley는 라스타파리안의 전통에 따라 드레드록스(Dreadlocks) 헤어스타일을 평생 유지했습니다."},
+{part:10,diff:2,lang:'en',q:"What was the greatest impact of Bob Marley's music on people in the Third World?",opts:["Spreading a new dance style","Delivering messages of hope and resistance to oppressed people","Developing Jamaican tourism","Expanding rock music"],ans:1,exp:"Beyond entertainment, his music had political and spiritual power, offering messages of peace, hope, and resistance to oppressed people worldwide."},
+{part:10,diff:1,lang:'en',q:"Which hairstyle, a symbol of Rastafarianism, did Bob Marley maintain?",opts:["Mohawk","Dreadlocks","Skinhead","Ponytail"],ans:1,exp:"Bob Marley maintained his iconic Dreadlocks throughout his life, in accordance with Rastafarian tradition."},
+
+// PART 1
+{part:1,diff:1,lang:'ko',q:"Turner의 작품에서 자주 등장하는 요소로, 특히 그의 후기 작품에서 두드러지게 묘사된 것은 무엇입니까?",opts:["정적이고 평화로운 시골 풍경","격렬한 바다와 날씨 변화","세밀한 궁전의 내부","단순한 기하학적 형태"],ans:1,exp:"Turner는 후기 작품에서 폭풍우, 거친 바다 등 자연의 격렬한 변화와 날씨를 역동적으로 묘사했습니다."},
+{part:1,diff:1,lang:'en',q:"Which element frequently appears in Turner's work and is especially prominent in his late paintings?",opts:["Static and peaceful rural landscapes","Violent seas and dramatic weather changes","Detailed interiors of palaces","Simple geometric shapes"],ans:1,exp:"Turner dynamically depicted the violent changes of nature and weather, such as storms and rough seas, in his late works."},
+
+// PART 2
+{part:2,diff:3,lang:'ko',q:"큐비즘(Cubism)이 서양 미술사에서 갖는 가장 큰 의의는 무엇입니까?",opts:["르네상스 원근법의 완벽한 부활","사물을 보이는 그대로 그리는 전통의 파괴와 다차원적 시각의 도입","종교적 주제의 전면적인 배제","순수 추상 미술의 절대적 완성"],ans:1,exp:"큐비즘은 단일 시점에서 사물을 묘사하던 전통을 깨고 대상을 여러 시점에서 분석하여 한 화면에 재구성했습니다."},
+{part:2,diff:3,lang:'en',q:"What is the most significant contribution of Cubism to Western art history?",opts:["The perfect revival of Renaissance perspective","Breaking the tradition of depicting objects as they appear and introducing multidimensional viewpoints","The complete exclusion of religious themes","The absolute completion of pure abstract art"],ans:1,exp:"Cubism broke the tradition of single-point perspective by analyzing objects from multiple viewpoints and reconstructing them on one plane."},
+
+// PART 3
+{part:3,diff:1,lang:'ko',q:"오랜 시간 동안 모래, 진흙, 조개껍데기 등이 쌓이고 굳어져서 만들어진 암석은 무엇입니까?",opts:["화성암","변성암","퇴적암(Sedimentary)","대리암"],ans:2,exp:"퇴적물이 쌓이고 압력을 받아 굳어진 암석을 퇴적암이라고 합니다."},
+{part:3,diff:1,lang:'en',q:"What type of rock is formed over a long time when sand, mud, and shells accumulate and harden?",opts:["Igneous rock","Metamorphic rock","Sedimentary rock","Marble"],ans:2,exp:"Sedimentary rock is formed when accumulated sediments are compacted and cemented under pressure over time."},
+
+// PART 4
+{part:4,diff:2,lang:'ko',q:"지하수가 고갈될 경우 발생할 수 있는 가장 심각한 지질학적 문제는 무엇입니까?",opts:["지진 발생률 급증","지반 침하(Land subsidence)","화산 활동의 증가","해수면의 급격한 하강"],ans:1,exp:"지하수가 과도하게 채굴되면 땅을 지탱하던 압력이 사라져 지반이 가라앉는 지반 침하 현상이 발생할 수 있습니다."},
+{part:4,diff:2,lang:'en',q:"What is the most serious geological problem that can occur when groundwater is depleted?",opts:["A surge in earthquake rates","Land subsidence","An increase in volcanic activity","A rapid drop in sea level"],ans:1,exp:"When groundwater is heavily extracted, the pressure supporting the ground decreases, which can cause the land to sink (land subsidence)."},
+
+// PART 5
+{part:5,diff:3,lang:'ko',q:"낭만주의 시대의 예술가들이 사회적 관습보다 우선시했던 것은 무엇입니까?",opts:["전통적인 규칙과 형식","개인의 주관적 감정과 상상력(Subjective emotion and imagination)","국가의 정치적 목표","이성적 논리와 철학"],ans:1,exp:"낭만주의자들은 개인의 주관적인 감정, 상상력, 영감 등을 전통이나 이성적 질서보다 훨씬 중요하게 여겼습니다."},
+{part:5,diff:3,lang:'en',q:"What did artists of the Romantic era prioritize over social conventions?",opts:["Traditional rules and forms","Individual subjective emotion and imagination","The political goals of the state","Rational logic and philosophy"],ans:1,exp:"Romantics valued subjective emotions, imagination, and inspiration far above tradition or rational order."},
+
+// PART 6
+{part:6,diff:2,lang:'ko',q:"Jack London의 삶에서 빈곤을 벗어나기 위해 그가 선택한 길 중 하나가 아닌 것은?",opts:["클론다이크 골드러시에 참여","다양한 육체 노동과 뱃사람 생활","전통적인 명문 대학에서의 학위 취득","도서관에서 독학하며 작가로서의 꿈을 키움"],ans:2,exp:"Jack London은 가난으로 인해 정규 교육을 길게 받지 못하고 주로 독학(self-educated)을 통해 지식을 쌓았습니다."},
+{part:6,diff:2,lang:'en',q:"Which of the following was NOT a path Jack London took to escape poverty?",opts:["Joining the Klondike Gold Rush","Engaging in various manual labor and working as a sailor","Earning a degree from a traditional prestigious university","Educating himself at the library and dreaming of becoming a writer"],ans:2,exp:"Due to his poverty, Jack London could not receive a lengthy formal education and acquired his knowledge primarily through self-education."},
+
+// PART 7
+{part:7,diff:1,lang:'ko',q:"태양계 행성 중 태양으로부터 가장 멀리 떨어져 있으며, 푸른색을 띠는 가스 행성은 무엇입니까?",opts:["천왕성(Uranus)","해왕성(Neptune)","목성(Jupiter)","토성(Saturn)"],ans:1,exp:"해왕성(Neptune)은 태양계에서 가장 바깥쪽에 위치한 푸른색의 목성형 행성입니다."},
+{part:7,diff:1,lang:'en',q:"Which gas planet in the solar system is the furthest from the Sun and has a blue color?",opts:["Uranus","Neptune","Jupiter","Saturn"],ans:1,exp:"Neptune is the outermost Jovian planet in the solar system, known for its distinct blue color."},
+
+// PART 8
+{part:8,diff:2,lang:'ko',q:"명왕성 탐사선 'New Horizons'가 제공한 정보로 옳지 않은 것은?",opts:["명왕성의 표면이 예상보다 역동적이고 지질학적으로 활발함을 발견","하트 모양의 거대한 빙하 지대 발견","명왕성에 빽빽한 산소 대기가 존재함을 확인","명왕성의 크기를 정확하게 측정"],ans:2,exp:"New Horizons는 명왕성에 질소와 메탄으로 이루어진 얇은 대기가 있음을 확인했으나, 빽빽한 산소 대기는 없습니다."},
+{part:8,diff:2,lang:'en',q:"Which of the following information provided by the 'New Horizons' probe about Pluto is incorrect?",opts:["Discovering that Pluto's surface is surprisingly dynamic and geologically active","Discovering a massive heart-shaped glacier region","Confirming the existence of a dense oxygen atmosphere on Pluto","Accurately measuring Pluto's size"],ans:2,exp:"New Horizons confirmed that Pluto has a thin atmosphere of nitrogen and methane, but not a dense oxygen atmosphere."},
+
+// PART 9
+{part:9,diff:2,lang:'ko',q:"Bebop(비밥) 재즈가 스윙 재즈에 대한 반발로 등장하면서 나타난 음악적 변화는?",opts:["댄스 음악으로서의 기능 강화","복잡한 화성과 빠르고 불규칙한 리듬 중심의 연주 음악으로의 변화","대규모 오케스트라 편성에 집중","악보에 완전히 의존하는 연주 방식"],ans:1,exp:"비밥은 스윙의 상업성과 댄스 음악적 요소에서 벗어나, 연주자의 기교와 복잡한 화성, 즉흥성을 강조하는 감상용 음악으로 발전했습니다."},
+{part:9,diff:2,lang:'en',q:"What musical change occurred when Bebop emerged as a reaction against Swing jazz?",opts:["Strengthening its function as dance music","Shifting to performance music centered on complex harmonies and fast, irregular rhythms","Focusing on large orchestral arrangements","A performance style relying entirely on sheet music"],ans:1,exp:"Bebop moved away from the commercialism and dance focus of Swing, evolving into a listener's music that highlighted musicians' technical skills, complex harmonies, and intense improvisation."},
+
+// PART 10
+{part:10,diff:1,lang:'ko',q:"Bob Marley의 대표곡 중 하나로, 억압받는 사람들에게 스스로를 해방하라는 메시지를 담고 있는 곡은?",opts:["Redemption Song","Hotel California","Let It Be","Bohemian Rhapsody"],ans:0,exp:"'Redemption Song'은 라스타파리안 철학과 해방의 메시지를 깊이 담은 Bob Marley의 대표적인 어쿠스틱 곡입니다."},
+{part:10,diff:1,lang:'en',q:"Which of Bob Marley's iconic songs carries a message urging oppressed people to emancipate themselves?",opts:["Redemption Song","Hotel California","Let It Be","Bohemian Rhapsody"],ans:0,exp:"'Redemption Song' is a quintessential acoustic track by Bob Marley deeply infused with Rastafarian philosophy and the message of mental emancipation."},
 
 /* ══════════════════════════════════════════════════════
    SHORT ANSWER (all parts, bilingual keyword matching)
