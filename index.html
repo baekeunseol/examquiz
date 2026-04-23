@@ -50,6 +50,8 @@
         .btn-primary:hover { background: #d4e83c; transform: translateY(-1px); }
         .btn-secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
         .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+        .btn-all { background: transparent; color: var(--accent3); border: 1px solid var(--accent3); }
+        .btn-all:hover { background: rgba(71,200,255,0.08); transform: translateY(-1px); }
 
         /* QUIZ */
         #quiz { max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; }
@@ -236,6 +238,7 @@
     <div class="start-btns">
         <button class="btn btn-primary" onclick="startFullQuiz()">🎯 전체 퀴즈 시작 (30문제)</button>
         <button class="btn btn-secondary" onclick="openPartModal()">📂 파트 선택 후 시작</button>
+        <button class="btn btn-all" onclick="startAllQuiz()">📋 모든 문제 풀기</button>
     </div>
 </div>
 
@@ -761,6 +764,7 @@ let state = {
     lastDiffs: [1,2,3],
     lastLang: 'both',
     lastTypes: ['mcq','short','essay'],
+    lastAllMode: false,
 };
 
 // ═══════════════════════════════════════════════════════
@@ -800,6 +804,10 @@ function buildQuiz(partIds, diffs, lang, types) {
         ));
     });
 
+    // check if any questions exist at all
+    const totalAvail = partIds.reduce((s, pid) => s + pools[pid].length, 0);
+    if (totalAvail === 0) return [];
+
     const selected = [];
     partIds.forEach(pid => {
         const take = pools[pid].splice(0, MIN);
@@ -834,6 +842,10 @@ function initHome() {
             <div class="q-count">${cnt}문제</div>
         </div>`;
     }).join('');
+    // Update "모든 문제" button label with actual count
+    const totalCount = QUESTIONS.length;
+    const allBtn = document.querySelector('.btn-all');
+    if (allBtn) allBtn.textContent = `📋 모든 문제 풀기 (${totalCount}문제)`;
     updateDiffPills();
     updateLangPills();
     updateTypePills();
@@ -855,9 +867,9 @@ function updateDiffPills() {
     const isAll = [1,2,3].every(d => state.selectedDiffs.includes(d));
     const g = id => document.getElementById(id);
     g('dpAll') .classList.toggle('active', isAll);
-    g('dpEasy').classList.toggle('active', !isAll && state.selectedDiffs.includes(1));
-    g('dpMed') .classList.toggle('active', !isAll && state.selectedDiffs.includes(2));
-    g('dpHard').classList.toggle('active', !isAll && state.selectedDiffs.includes(3));
+    g('dpEasy').classList.toggle('active', state.selectedDiffs.includes(1));
+    g('dpMed') .classList.toggle('active', state.selectedDiffs.includes(2));
+    g('dpHard').classList.toggle('active', state.selectedDiffs.includes(3));
 }
 
 function setLang(l) {
@@ -884,13 +896,9 @@ function updateTypePills() {
     const isAll = ['mcq','short','essay'].every(t => state.selectedTypes.includes(t));
     const g = id => document.getElementById(id);
     g('tpAll')  .classList.toggle('active', isAll);
-    // type pills use inline styles so just toggle a class flag
-    ['tpMCQ','tpShort','tpEssay'].forEach(id => g(id).classList.remove('active'));
-    if (!isAll) {
-        if (state.selectedTypes.includes('mcq'))   g('tpMCQ')  .classList.add('active');
-        if (state.selectedTypes.includes('short')) g('tpShort').classList.add('active');
-        if (state.selectedTypes.includes('essay')) g('tpEssay').classList.add('active');
-    }
+    g('tpMCQ')  .classList.toggle('active', state.selectedTypes.includes('mcq'));
+    g('tpShort').classList.toggle('active', state.selectedTypes.includes('short'));
+    g('tpEssay').classList.toggle('active', state.selectedTypes.includes('essay'));
 }
 
 // ═══════════════════════════════════════════════════════
@@ -899,22 +907,49 @@ function updateTypePills() {
 function startFullQuiz() {
     _launchQuiz(PARTS.map(p=>p.id), state.selectedDiffs, state.selectedLang, state.selectedTypes);
 }
+function startAllQuiz() {
+    _launchQuiz(PARTS.map(p=>p.id), state.selectedDiffs, state.selectedLang, state.selectedTypes, true);
+}
 function startPartQuiz(partId) {
     _launchQuiz([partId], state.selectedDiffs, state.selectedLang, state.selectedTypes);
 }
-function _launchQuiz(partIds, diffs, lang, types) {
+function _launchQuiz(partIds, diffs, lang, types, allMode) {
     state.lastPartIds = [...partIds];
     state.lastDiffs   = [...diffs];
     state.lastLang    = lang;
     state.lastTypes   = [...types];
-    state.quizQuestions = buildQuiz(partIds, diffs, lang, types);
+    state.lastAllMode = !!allMode;
+    const qs = allMode ? buildAllQuiz(partIds, diffs, lang, types) : buildQuiz(partIds, diffs, lang, types);
+    if (!qs || qs.length === 0) {
+        alert('선택한 조건에 해당하는 문제가 없습니다.\n필터 조건을 다시 확인해주세요.');
+        return;
+    }
+    state.quizQuestions = qs;
     state.currentIdx = 0;
     state.results    = [];
     showScreen('quiz');
     renderQuestion();
 }
 function replayQuiz() {
-    _launchQuiz(state.lastPartIds, state.lastDiffs, state.lastLang, state.lastTypes);
+    _launchQuiz(state.lastPartIds, state.lastDiffs, state.lastLang, state.lastTypes, state.lastAllMode);
+}
+
+function buildAllQuiz(partIds, diffs, lang, types) {
+    const activeDiffs = diffs && diffs.length ? diffs : [1,2,3];
+    const activeTypes = types && types.length ? types : ['mcq','short','essay'];
+    const activeLang  = lang || 'both';
+    const filtered = QUESTIONS.filter(q =>
+        partIds.includes(q.part) &&
+        activeDiffs.includes(q.diff) &&
+        activeTypes.includes(q.type || 'mcq') &&
+        matchesLang(q, activeLang)
+    );
+    return shuffle(filtered).map(q => {
+        if (q.type === 'short' || q.type === 'essay') return {...q};
+        const correctText = q.opts[q.ans];
+        const so = shuffle(q.opts);
+        return {...q, opts: so, ans: so.indexOf(correctText)};
+    });
 }
 function openPartModal() {
     const mp = document.getElementById('modalParts');
@@ -1119,7 +1154,7 @@ function showResult() {
     showScreen('result');
     const ok    = state.results.filter(r=>r).length;
     const total = state.quizQuestions.length;
-    const pct   = Math.round((ok/total)*100);
+    const pct   = total > 0 ? Math.round((ok/total)*100) : 0;
     document.getElementById('resultScore').textContent  = pct+'%';
     document.getElementById('statCorrect').textContent  = ok;
     document.getElementById('statWrong').textContent    = total-ok;
